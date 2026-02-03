@@ -1,0 +1,28 @@
+User-agent: *
+Allow: /
+
+# Запрещаем индексацию служебных страниц
+Disallow: /api/
+Disallow: /_next/
+Disallow: /booking/thank-you
+
+# Разрешаем индексацию основных страниц
+Allow: /
+Allow: /rooms
+Allow: /rooms/*
+Allow: /spa
+Allow: /spa/*
+Allow: /blog
+Allow: /blog/*
+Allow: /entertainment
+Allow: /entertainment/*
+Allow: /prices
+Allow: /booking
+Allow: /about
+Allow: /o-komplekse
+Allow: /restaurant
+Allow: /contacts
+
+# Sitemap
+Sitemap: https://priboy-spa.ru/sitemap.xml
+
