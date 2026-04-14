@@ -5,8 +5,7 @@
 - **Название**: Гранд Отель & SPA Прибой
 - **Домен**: `priboy-spa.ru`
 - **Технологии**: Next.js 16, React, TypeScript, Tailwind CSS
-- **Сервер**: `89.23.102.48`
-- **Порт**: `3002`
+- **Порт приложения (prod)**: `3002` (задаётся на сервере, не коммитьте IP/учётки в публичный репозиторий)
 - **Удаленная директория**: `/var/www/priboy-spa.ru`
 - **Systemd сервис**: `priboy-spa-ru.service`
 
@@ -60,14 +59,16 @@ PORT=3002
 ## 🚀 Деплой
 
 ### Скрипт деплоя
-Используется `../deploy-priboy-spa-ru.sh` из корня репозитория.
 
-### Команда деплоя
+В корне проекта: `deploy.sh`. Перед запуском задайте переменные окружения **только локально** (пароли и IP не храните в git):
+
 ```bash
-cd /Users/renatusmanov/Priboy4
-export DEPLOY_PASSWORD='wR_DUF3Ays3kVu'
-bash deploy-priboy-spa-ru.sh
+export DEPLOY_HOST="your-server-hostname-or-ip"
+export DEPLOY_PASSWORD="your-secret"   # или используйте SSH-ключи вместо пароля + sshpass
+bash deploy.sh
 ```
+
+См. `DEVELOPMENT.md` — раздел про деплой и безопасность.
 
 ### Что делает скрипт
 1. Синхронизирует файлы через `rsync`
@@ -156,21 +157,23 @@ bash deploy-priboy-spa-ru.sh
 
 ### Что нужно помнить
 1. ✅ Всегда проверяй, что работаешь в `Priboy-hotel4/`
-2. ✅ Используй правильный скрипт деплоя (`deploy-priboy-spa-ru.sh`)
+2. ✅ Используй скрипт деплоя `deploy.sh` и не коммить секреты
 3. ✅ Проверяй права доступа для `www-data` после деплоя
 4. ✅ Обновляй sitemap при добавлении новых страниц
 5. ✅ Проверяй SEO метаданные
 
 ## 🐛 Отладка
 
+На сервере (подставьте свои `DEPLOY_USER` и `DEPLOY_HOST`, лучше вход по SSH-ключу):
+
 ### Проверка статуса сервиса
 ```bash
-ssh root@89.23.102.48 "systemctl status priboy-spa-ru.service"
+ssh "${DEPLOY_USER:-root}@${DEPLOY_HOST}" "systemctl status priboy-spa-ru.service"
 ```
 
 ### Просмотр логов
 ```bash
-ssh root@89.23.102.48 "journalctl -u priboy-spa-ru.service -n 50"
+ssh "${DEPLOY_USER:-root}@${DEPLOY_HOST}" "journalctl -u priboy-spa-ru.service -n 50"
 ```
 
 ### Проверка сайта
@@ -180,7 +183,7 @@ curl -I https://priboy-spa.ru/
 
 ### Проверка прав доступа
 ```bash
-ssh root@89.23.102.48 "ls -la /var/www/priboy-spa.ru/.next"
+ssh "${DEPLOY_USER:-root}@${DEPLOY_HOST}" "ls -la /var/www/priboy-spa.ru/.next"
 ```
 
 ## 🔍 SEO и индексация
@@ -209,9 +212,7 @@ ssh root@89.23.102.48 "ls -la /var/www/priboy-spa.ru/.next"
 
 ## 🔗 Связанные файлы
 
-- Скрипт деплоя: `../deploy-priboy-spa-ru.sh`
-- Общий обзор: `../PROJECTS_OVERVIEW.md`
-- Документация Priboy3: `../Priboy-hotel3/README.md`
+- Деплой и dev: `DEVELOPMENT.md`, `deploy.sh`
 
 ## 📌 Отличия от Priboy3
 

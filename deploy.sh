@@ -6,7 +6,7 @@ set -e
 # Запускать из директории проекта Priboy-hotel4
 
 USER="${DEPLOY_USER:-root}"
-HOST="${DEPLOY_HOST:-89.23.102.48}"
+HOST="${DEPLOY_HOST:-}"
 REMOTE_DIR="${DEPLOY_REMOTE_DIR:-/var/www/priboy-spa.ru}"
 LOCAL_DIR="${DEPLOY_LOCAL_DIR:-.}"
 PASSWORD="${DEPLOY_PASSWORD}"
@@ -20,6 +20,11 @@ if [ ! -f "package.json" ]; then
 fi
 
 # Проверяем наличие обязательных переменных окружения
+if [ -z "$HOST" ]; then
+    echo "❌ Ошибка: задайте DEPLOY_HOST (IP или hostname сервера). Не храните его в git — только в окружении или .env.deploy."
+    exit 1
+fi
+
 if [ -z "$PASSWORD" ]; then
     echo "❌ Ошибка: переменная окружения DEPLOY_PASSWORD не установлена"
     echo "Используйте: export DEPLOY_PASSWORD='your_password'"

@@ -42,11 +42,19 @@ pnpm start
 
 ## 🚀 Деплой на сервер
 
+**Безопасность:** не коммитьте пароли, IP продакшена и личные пути в репозиторий. Храните значения в менеджере паролей или в локальном файле вроде `.env.deploy` (файл добавлен в `.gitignore`).
+
 ### Переменные окружения для деплоя
 
+Обязательно задайте перед `deploy.sh`:
+
 ```bash
-export DEPLOY_PASSWORD='wR_DUF3Ays3kVu'
+export DEPLOY_HOST="your-server-hostname-or-ip"
+export DEPLOY_PASSWORD="your-secret"
+# опционально: DEPLOY_USER, DEPLOY_REMOTE_DIR, DEPLOY_DOMAIN, DEPLOY_PORT
 ```
+
+Предпочтительно настроить **SSH-ключи** и по возможности уйти от пароля/`sshpass` на постоянной основе.
 
 ### Скрипт деплоя
 
@@ -60,29 +68,26 @@ export DEPLOY_PASSWORD='wR_DUF3Ays3kVu'
 
 ```bash
 # Из директории проекта
-export DEPLOY_PASSWORD='wR_DUF3Ays3kVu'
+export DEPLOY_HOST="..."
+export DEPLOY_PASSWORD="..."
 bash deploy.sh
 ```
 
-### Информация о сервере
+### Информация о сервере (публичные параметры)
 
 | Параметр | Значение |
 |----------|----------|
-| **IP** | `89.23.102.48` |
 | **Домен** | `priboy-spa.ru` |
 | **Порт** | `3002` |
 | **Директория** | `/var/www/priboy-spa.ru` |
 | **Systemd сервис** | `priboy-spa-ru.service` |
-| **Пользователь** | `www-data` |
+| **Пользователь веб-сервера** | `www-data` |
 
 ### SSH доступ
 
 ```bash
-# Подключение к серверу
-sshpass -p 'wR_DUF3Ays3kVu' ssh root@89.23.102.48
-
-# Или с ключами (рекомендуется настроить)
-ssh root@89.23.102.48
+# Рекомендуется: ключи SSH
+ssh "${DEPLOY_USER:-root}@${DEPLOY_HOST}"
 ```
 
 ---
@@ -92,29 +97,29 @@ ssh root@89.23.102.48
 ### Проверка статуса сервиса
 
 ```bash
-ssh root@89.23.102.48 "systemctl status priboy-spa-ru.service"
+ssh "${DEPLOY_USER:-root}@${DEPLOY_HOST}" "systemctl status priboy-spa-ru.service"
 ```
 
 ### Просмотр логов
 
 ```bash
 # Последние 100 записей логов
-ssh root@89.23.102.48 "journalctl -u priboy-spa-ru.service -n 100"
+ssh "${DEPLOY_USER:-root}@${DEPLOY_HOST}" "journalctl -u priboy-spa-ru.service -n 100"
 
 # Логи в реальном времени
-ssh root@89.23.102.48 "journalctl -u priboy-spa-ru.service -f"
+ssh "${DEPLOY_USER:-root}@${DEPLOY_HOST}" "journalctl -u priboy-spa-ru.service -f"
 ```
 
 ### Перезапуск сервиса
 
 ```bash
-ssh root@89.23.102.48 "systemctl restart priboy-spa-ru.service"
+ssh "${DEPLOY_USER:-root}@${DEPLOY_HOST}" "systemctl restart priboy-spa-ru.service"
 ```
 
 ### Проверка Nginx
 
 ```bash
-ssh root@89.23.102.48 "nginx -t && systemctl reload nginx"
+ssh "${DEPLOY_USER:-root}@${DEPLOY_HOST}" "nginx -t && systemctl reload nginx"
 ```
 
 ### Проверка сайта
@@ -312,10 +317,10 @@ URL: https://priboy-spa.ru/sitemap.xml
 
 ```bash
 # Проверить статус сервиса
-ssh root@89.23.102.48 "systemctl status priboy-spa-ru.service"
+ssh "${DEPLOY_USER:-root}@${DEPLOY_HOST}" "systemctl status priboy-spa-ru.service"
 
 # Перезапустить
-ssh root@89.23.102.48 "systemctl restart priboy-spa-ru.service"
+ssh "${DEPLOY_USER:-root}@${DEPLOY_HOST}" "systemctl restart priboy-spa-ru.service"
 ```
 
 ### Ошибка сборки
@@ -330,7 +335,7 @@ pnpm build
 ### Права доступа на сервере
 
 ```bash
-ssh root@89.23.102.48 "chown -R www-data:www-data /var/www/priboy-spa.ru && chmod -R 755 /var/www/priboy-spa.ru"
+ssh "${DEPLOY_USER:-root}@${DEPLOY_HOST}" "chown -R www-data:www-data /var/www/priboy-spa.ru && chmod -R 755 /var/www/priboy-spa.ru"
 ```
 
 ---
