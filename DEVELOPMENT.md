@@ -1,348 +1,57 @@
-# 🛠️ Руководство по разработке - Priboy Hotel 4★
+# Руководство по разработке — Прибой 4★
 
-## 📋 Быстрый старт
+## Быстрый старт
 
-### 1. Клонирование репозитория
+**Требования:** Node.js 20+, pnpm 9+
 
 ```bash
 git clone git@github.com:usmanoffcom/Priboy-hotel4.git
 cd Priboy-hotel4
-```
-
-### 2. Установка зависимостей
-
-**Требования:**
-- Node.js 20+ 
-- pnpm 9+
-
-```bash
-# Установка pnpm (если не установлен)
-npm install -g pnpm
-
-# Установка зависимостей проекта
 pnpm install
-```
-
-### 3. Запуск в режиме разработки
-
-```bash
 pnpm dev
 ```
 
-Сайт будет доступен по адресу: http://localhost:3000
+Локально: `http://localhost:3000`
 
-### 4. Сборка для продакшена
+**Сборка:**
 
 ```bash
 pnpm build
 pnpm start
 ```
 
----
+## Деплой
 
-## 🚀 Деплой на сервер
+Продакшен (хостинг, SSH, systemd, nginx, права на файлы) настраивается вне этого файла. Скрипт `deploy.sh` ожидает переменные окружения для доступа к серверу — задавайте их **локально**, не коммитьте пароли и не описывайте внутренние имена хостов и пути в публичной документации.
 
-**Безопасность:** не коммитьте пароли, IP продакшена и личные пути в репозиторий. Храните значения в менеджере паролей или в локальном файле вроде `.env.deploy` (файл добавлен в `.gitignore`).
+## Структура проекта (кратко)
 
-### Переменные окружения для деплоя
+- `app/` — App Router: страницы номеров, SPA, блог, бронирование, `sitemap.ts`, `layout.tsx`
+- `components/` — UI, превью SPA, шапка/подвал
+- `lib/` — данные номеров, блога, SPA и др.
+- `public/` — статика
 
-Обязательно задайте перед `deploy.sh`:
+## Интеграции
 
-```bash
-export DEPLOY_HOST="your-server-hostname-or-ip"
-export DEPLOY_PASSWORD="your-secret"
-# опционально: DEPLOY_USER, DEPLOY_REMOTE_DIR, DEPLOY_DOMAIN, DEPLOY_PORT
-```
+- **TravelLine** — виджет бронирования; подключение в `app/layout.tsx`
+- **Яндекс.Метрика** — счётчик в `app/layout.tsx`
 
-Предпочтительно настроить **SSH-ключи** и по возможности уйти от пароля/`sshpass` на постоянной основе.
+Идентификаторы не дублируйте в открытых заметках — они уже задаются в коде приложения.
 
-### Скрипт деплоя
+## Стили
 
-Скрипт `deploy.sh` автоматически:
-1. Синхронизирует файлы на сервер через rsync
-2. Устанавливает зависимости (pnpm install)
-3. Собирает проект (pnpm build)
-4. Настраивает systemd сервис
-5. Настраивает Nginx
-6. Перезапускает сервис
+Tailwind CSS, палитра: терракотовый / кремовый / золотой. UI: [shadcn/ui](https://ui.shadcn.com/).
 
-```bash
-# Из директории проекта
-export DEPLOY_HOST="..."
-export DEPLOY_PASSWORD="..."
-bash deploy.sh
-```
+## SEO
 
-### Информация о сервере (публичные параметры)
+Публичный сайт: [priboy-spa.ru](https://priboy-spa.ru). Sitemap и метаданные — в `app/sitemap.ts` и страницах. После добавления страниц проверяйте sitemap и robots.
 
-| Параметр | Значение |
-|----------|----------|
-| **Домен** | `priboy-spa.ru` |
-| **Порт** | `3002` |
-| **Директория** | `/var/www/priboy-spa.ru` |
-| **Systemd сервис** | `priboy-spa-ru.service` |
-| **Пользователь веб-сервера** | `www-data` |
+## Важно
 
-### SSH доступ
+- Не заменять TravelLine кастомной формой бронирования без отдельного решения.
+- Не коммить `node_modules`, `.next`, локальные файлы с секретами деплоя.
 
-```bash
-# Рекомендуется: ключи SSH
-ssh "${DEPLOY_USER:-root}@${DEPLOY_HOST}"
-```
+## Контакты (публичные)
 
----
-
-## 🔧 Отладка на сервере
-
-### Проверка статуса сервиса
-
-```bash
-ssh "${DEPLOY_USER:-root}@${DEPLOY_HOST}" "systemctl status priboy-spa-ru.service"
-```
-
-### Просмотр логов
-
-```bash
-# Последние 100 записей логов
-ssh "${DEPLOY_USER:-root}@${DEPLOY_HOST}" "journalctl -u priboy-spa-ru.service -n 100"
-
-# Логи в реальном времени
-ssh "${DEPLOY_USER:-root}@${DEPLOY_HOST}" "journalctl -u priboy-spa-ru.service -f"
-```
-
-### Перезапуск сервиса
-
-```bash
-ssh "${DEPLOY_USER:-root}@${DEPLOY_HOST}" "systemctl restart priboy-spa-ru.service"
-```
-
-### Проверка Nginx
-
-```bash
-ssh "${DEPLOY_USER:-root}@${DEPLOY_HOST}" "nginx -t && systemctl reload nginx"
-```
-
-### Проверка сайта
-
-```bash
-curl -I https://priboy-spa.ru/
-```
-
----
-
-## 📁 Структура проекта
-
-```
-Priboy-hotel4/
-├── app/                      # Next.js App Router
-│   ├── page.tsx              # Главная страница
-│   ├── layout.tsx            # Корневой layout (метаданные, скрипты)
-│   ├── not-found.tsx         # Страница 404
-│   ├── sitemap.ts            # Динамический sitemap
-│   ├── booking/              # Страница бронирования
-│   ├── rooms/                # Страницы номеров
-│   │   ├── page.tsx          # Список номеров
-│   │   └── [slug]/page.tsx   # Страница конкретного номера
-│   ├── spa/                  # SPA услуги
-│   ├── blog/                 # Блог
-│   │   ├── page.tsx          # Список статей
-│   │   └── [slug]/page.tsx   # Страница статьи
-│   ├── restaurant/           # Ресторан
-│   ├── contacts/             # Контакты
-│   └── ...                   # Другие страницы
-├── components/               # React компоненты
-│   ├── header.tsx            # Шапка сайта
-│   ├── footer.tsx            # Подвал сайта
-│   ├── hero-section.tsx      # Главный баннер
-│   ├── room-card.tsx         # Карточка номера
-│   ├── room-amenities.tsx    # Список удобств
-│   └── ui/                   # UI компоненты (shadcn/ui)
-├── lib/                      # Данные и утилиты
-│   ├── rooms-data.ts         # Данные номеров
-│   ├── blog-data.ts          # Данные блога
-│   ├── spa-data.ts           # Данные SPA
-│   ├── menu-data.ts          # Данные меню ресторана
-│   └── utils.ts              # Утилиты
-├── public/                   # Статические файлы
-│   ├── rooms/                # Фотографии номеров
-│   ├── spa/                  # Фотографии SPA
-│   └── ...                   # Другие изображения
-├── styles/                   # Стили
-│   └── globals.css           # Глобальные стили
-├── deploy.sh                 # Скрипт деплоя
-├── package.json              # Зависимости
-├── next.config.mjs           # Конфигурация Next.js
-├── tailwind.config.ts        # Конфигурация Tailwind CSS
-└── tsconfig.json             # Конфигурация TypeScript
-```
-
----
-
-## 📝 Основные файлы данных
-
-### `lib/rooms-data.ts` - Номера отеля
-
-```typescript
-export const rooms = [
-  {
-    id: "standard",
-    name: "Стандартный номер",
-    slug: "standard",
-    size: "25 м²",
-    price: "от 5 500 ₽",
-    capacity: "2 + 1",
-    beds: "1 большая кровать",
-    amenities: ["Wi-Fi", "Кондиционер", "TV", ...],
-    images: [...],
-    fullDescription: "...",
-  },
-  // ...
-]
-```
-
-### `lib/blog-data.ts` - Статьи блога
-
-```typescript
-export const blogPosts = [
-  {
-    id: 1,
-    slug: "novyj-god-...",
-    title: "...",
-    excerpt: "...",
-    content: "...",
-    image: "/blog/...",
-    category: "Отдых",
-    author: "Гранд Отель Прибой",
-    date: "2024-12-30",
-    readTime: "5 мин",
-  },
-  // ...
-]
-```
-
-### `lib/spa-data.ts` - SPA услуги
-
-```typescript
-export const spaServices = [...]
-export const spaInfo = {
-  schedule: "17:00 – 20:00",
-  technicalHour: "с 16:00 до 17:00",
-  // ...
-}
-```
-
----
-
-## 🎨 Стилизация
-
-Проект использует **Tailwind CSS** с кастомной цветовой схемой:
-
-| Цвет | Значение | Использование |
-|------|----------|---------------|
-| Терракотовый | `#C17F5A` | Акценты, кнопки |
-| Кремовый | `#F5F5DC` | Фон, текст |
-| Золотой | `#D4AF37` | Премиум элементы |
-
-**Компоненты UI**: используется [shadcn/ui](https://ui.shadcn.com/) - находятся в `components/ui/`
-
----
-
-## 🔗 Интеграции
-
-### TravelLine (бронирование)
-
-Настроено в `app/layout.tsx`:
-
-```typescript
-<Script
-  id="travelline-init"
-  strategy="lazyOnload"
-  dangerouslySetInnerHTML={{
-    __html: `(function(w){...})('TL-INT-priboy-spa-ru_2025-06-23', w.TL);`
-  }}
-/>
-```
-
-### Яндекс.Метрика
-
-ID: `99041885` - настроено в `app/layout.tsx`
-
----
-
-## 📊 SEO
-
-### Sitemap
-
-Генерируется автоматически в `app/sitemap.ts`:
-- Статические страницы
-- Динамические страницы номеров
-- Страницы блога
-- SPA услуги
-
-URL: https://priboy-spa.ru/sitemap.xml
-
-### Метаданные
-
-Каждая страница имеет:
-- `title` и `description`
-- Open Graph теги
-- Twitter Card теги
-- Canonical URL
-
-### Страница 404
-
-Кастомная страница: `app/not-found.tsx`
-
----
-
-## ⚠️ Важно
-
-### НЕ делать:
-- ❌ Не использовать кастомные формы бронирования (используется TravelLine)
-- ❌ Не менять домен или порт
-- ❌ Не удалять интеграцию TravelLine
-- ❌ Не пушить node_modules и .next
-
-### Помнить:
-- ✅ Проверять статус деплоя после изменений
-- ✅ Обновлять sitemap при добавлении страниц
-- ✅ Использовать оптимизированные изображения
-- ✅ Тестировать на мобильных устройствах
-
----
-
-## 🐞 Типичные проблемы
-
-### Сайт не открывается после деплоя
-
-```bash
-# Проверить статус сервиса
-ssh "${DEPLOY_USER:-root}@${DEPLOY_HOST}" "systemctl status priboy-spa-ru.service"
-
-# Перезапустить
-ssh "${DEPLOY_USER:-root}@${DEPLOY_HOST}" "systemctl restart priboy-spa-ru.service"
-```
-
-### Ошибка сборки
-
-```bash
-# Очистить кеш и пересобрать
-rm -rf .next node_modules
-pnpm install
-pnpm build
-```
-
-### Права доступа на сервере
-
-```bash
-ssh "${DEPLOY_USER:-root}@${DEPLOY_HOST}" "chown -R www-data:www-data /var/www/priboy-spa.ru && chmod -R 755 /var/www/priboy-spa.ru"
-```
-
----
-
-## 📞 Контакты
-
-- **Домен**: https://priboy-spa.ru
-- **Email**: booking@priboy-spa.ru
-- **Телефон**: +7 (862) 270-89-89
-
+- Сайт: https://priboy-spa.ru  
+- См. страницу «Контакты» на сайте для актуальных телефона и почты.
