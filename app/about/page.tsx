@@ -1,3 +1,4 @@
+import "./about.css"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
@@ -14,8 +15,10 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Об отеле | Гранд Отель & SPA Прибой",
-    description: "Гранд Отель & SPA Прибой — уютный уголок роскоши на побережье Черного моря в сердце Лазаревского",
+    description: "Гранд Отель & SPA Прибой — уютный уголок роскоши на побережье Черного моря в сердце Лазаревского. История, команда, философия гостеприимства.",
     url: "https://priboy-spa.ru/about",
+    type: "website",
+    images: [{ url: "https://framerusercontent.com/images/knZyYzLGIo9To06MDK80T4PMGA.jpg", width: 1200, height: 630, alt: "Гранд Отель & SPA Прибой — Лазаревское" }],
   },
 }
 
@@ -41,15 +44,12 @@ export default function AboutPage() {
       <main>
         {/* Hero */}
         <section
-          className="relative pt-28 sm:pt-32 pb-12 sm:pb-16 flex items-center justify-center bg-cover bg-center"
-          style={{
-            backgroundImage: `url('/hotel-exterior-evening-view.jpg')`,
-          }}
+          className="relative pt-28 sm:pt-32 pb-12 sm:pb-16 flex items-center justify-center bg-cover bg-center about-hero-bg"
         >
-          <div className="absolute inset-0 bg-foreground/50" />
+          <div className="absolute inset-0 gradient-page-hero" />
           <div className="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-            <p className="text-sm tracking-[0.2em] uppercase mb-4 text-gold">С 2014 года</p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6">Об отеле</h1>
+            <p className="glass-pill inline-flex text-sm tracking-[0.2em] uppercase mb-4 text-gold">С 2014 года</p>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 drop-shadow-md">Об отеле</h1>
             <p className="text-lg text-white/90 max-w-2xl mx-auto leading-relaxed">
               Гранд Отель & SPA Прибой — это уютный уголок роскоши на побережье Черного моря в сердце Лазаревского
             </p>
@@ -57,11 +57,11 @@ export default function AboutPage() {
         </section>
 
         {/* Stats */}
-        <section className="py-12 bg-terracotta">
+        <section className="py-12 bg-gradient-to-r from-terracotta to-forest/80">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
               {stats.map((stat, index) => (
-                <div key={index}>
+                <div key={index} className="glass rounded-xl p-4">
                   <stat.icon className="h-8 w-8 mx-auto mb-3 opacity-80" />
                   <p className="text-3xl md:text-4xl font-light mb-1">{stat.value}</p>
                   <p className="text-sm opacity-80">{stat.label}</p>
@@ -99,16 +99,16 @@ export default function AboutPage() {
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
-                <div className="relative w-full h-48 overflow-hidden">
+                <div className="preview-grid-card cursor-default h-48">
                   <Image src="/hotel-lobby-interior.jpg" alt="Лобби отеля" fill sizes="50vw" className="object-cover" loading="lazy" />
                 </div>
-                <div className="relative w-full h-48 overflow-hidden mt-8">
+                <div className="preview-grid-card cursor-default h-48 mt-8">
                   <Image src="/hotel-pool-guests.jpg" alt="Бассейн" fill sizes="50vw" className="object-cover" loading="lazy" />
                 </div>
-                <div className="relative w-full h-48 overflow-hidden">
+                <div className="preview-grid-card cursor-default h-48">
                   <Image src="/hotel-staff-service.jpg" alt="Персонал" fill sizes="50vw" className="object-cover" loading="lazy" />
                 </div>
-                <div className="relative w-full h-48 overflow-hidden mt-8">
+                <div className="preview-grid-card cursor-default h-48 mt-8">
                   <Image src="/hotel-room-detail.jpg" alt="Номер" fill sizes="50vw" className="object-cover" loading="lazy" />
                 </div>
               </div>
@@ -210,7 +210,7 @@ export default function AboutPage() {
           <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl md:text-4xl font-light text-white mb-6">Станьте частью нашей истории</h2>
             <p className="text-white/80 mb-8">Забронируйте номер и откройте для себя гостеприимство «Прибоя»</p>
-            <Button asChild size="lg" className="bg-terracotta hover:bg-terracotta-light text-white rounded-none px-10">
+            <Button asChild size="lg" className="bg-terracotta hover:bg-terracotta-light text-white px-10">
               <Link href="/booking">Забронировать</Link>
             </Button>
           </div>

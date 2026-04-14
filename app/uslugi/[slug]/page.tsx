@@ -149,13 +149,13 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                       Позвоните нам или закажите при бронировании номера
                     </p>
                     <div className="space-y-3">
-                      <Button asChild className="w-full bg-terracotta hover:bg-terracotta-light text-white rounded-none">
+                      <Button asChild className="w-full bg-terracotta hover:bg-terracotta-light text-white">
                         <a href="tel:+79883443333" className="flex items-center justify-center gap-2">
                           <Phone className="h-4 w-4" />
                           +7 (988) 344-33-33
                         </a>
                       </Button>
-                      <Button asChild variant="outline" className="w-full border-terracotta text-terracotta hover:bg-terracotta/10 rounded-none">
+                      <Button asChild variant="outline" className="w-full border-terracotta text-terracotta hover:bg-terracotta/10">
                         <Link href="/booking">Забронировать номер</Link>
                       </Button>
                     </div>
@@ -169,7 +169,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                     <p className="text-sm text-white/80 mb-4">
                       Мы ответим на все ваши вопросы об услугах отеля
                     </p>
-                    <Button asChild variant="outline" className="w-full bg-transparent border-white text-white hover:bg-white/10 rounded-none">
+                    <Button asChild variant="outline" className="w-full bg-transparent border-white text-white hover:bg-white/10">
                       <Link href="/contacts">Связаться с нами</Link>
                     </Button>
                   </div>
@@ -214,7 +214,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 ))}
               </div>
               <div className="text-center mt-8">
-                <Button asChild variant="outline" className="border-terracotta text-terracotta hover:bg-terracotta/10 rounded-none px-8">
+                <Button asChild variant="outline" className="border-terracotta text-terracotta hover:bg-terracotta/10 px-8">
                   <Link href="/uslugi">Все услуги</Link>
                 </Button>
               </div>

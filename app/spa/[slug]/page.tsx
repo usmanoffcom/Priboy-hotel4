@@ -9,6 +9,9 @@ import Link from "next/link"
 import { useParams } from "next/navigation"
 import { spaServices, getSpaServiceBySlug } from "@/lib/spa-data"
 import { ImageModal } from "@/components/image-modal"
+import { PageHero } from "@/components/ui/page-hero"
+import { Section } from "@/components/ui/section"
+import { TextLink } from "@/components/ui/text-link"
 
 export default function SpaServicePage() {
   const params = useParams()
@@ -38,20 +41,13 @@ export default function SpaServicePage() {
     <>
       <Header />
       <main>
-        {/* Hero */}
-        <section
-          className="relative pt-28 sm:pt-32 pb-10 sm:pb-14 flex items-center justify-center bg-cover bg-center"
-          style={{
-            backgroundImage: `url('${service.image}')`,
-          }}
-        >
-          <div className="absolute inset-0 bg-foreground/50" />
-          <div className="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-            <p className="text-xs sm:text-sm tracking-[0.3em] uppercase mb-3 text-gold">SPA-комплекс</p>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-light mb-3">{service.name}</h1>
-            <p className="text-sm md:text-base text-white/90 max-w-2xl mx-auto">{service.shortDescription}</p>
-          </div>
-        </section>
+        <PageHero
+          eyebrow="SPA-комплекс"
+          title={service.name}
+          description={service.shortDescription}
+          className="bg-cover bg-center pb-10 sm:pb-14"
+          backgroundImage={service.image}
+        />
 
         {/* Quick Stats */}
         <section className="py-4 bg-terracotta text-white">
@@ -87,20 +83,16 @@ export default function SpaServicePage() {
 
         {/* Breadcrumb */}
         <section className="py-4 bg-cream border-b border-border">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <Link
-              href="/spa"
-              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-terracotta transition-colors"
-            >
+          <div className="site-container">
+            <TextLink href="/spa" className="text-sm text-muted-foreground">
               <ArrowLeft className="h-4 w-4" />
               Назад к SPA-комплексу
-            </Link>
+            </TextLink>
           </div>
         </section>
 
         {/* Content */}
-        <section className="py-16 bg-cream">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <Section muted className="py-16">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
               {/* Main Content */}
               <div className="lg:col-span-2">
@@ -182,14 +174,13 @@ export default function SpaServicePage() {
                     * В зимний период посещение бань включено в стоимость проживания. В летний период — в зависимости от тарифа.
                   </p>
 
-                  <Button asChild className="w-full bg-terracotta hover:bg-terracotta-light text-white rounded-none">
+                  <Button asChild variant="brand" className="w-full">
                     <Link href="/booking">Забронировать номер</Link>
                   </Button>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+        </Section>
 
         {/* Other Services */}
         <section className="py-16 bg-white">

@@ -52,7 +52,7 @@ export function AquaComplexPreview() {
               ))}
             </ul>
 
-            <Button asChild className="bg-terracotta hover:bg-terracotta-light text-white rounded-none px-8 py-6 text-base font-medium">
+            <Button asChild className="bg-terracotta hover:bg-terracotta-light text-white px-8 py-6 text-base font-medium">
               <Link href="/entertainment">Подробнее об аква-комплексе</Link>
             </Button>
           </div>
@@ -61,54 +61,58 @@ export function AquaComplexPreview() {
           <div className="grid grid-cols-2 gap-4 order-1 lg:order-2">
             <div className="space-y-4">
               <div
-                className="relative w-full h-48 sm:h-56 md:h-64 overflow-hidden cursor-pointer"
+                className="preview-grid-card group/img h-48 sm:h-56 md:h-64"
                 onClick={() => openModal(images, 0)}
               >
                 <Image
                   src={images[0]}
                   alt="Аква-комплекс бассейн"
                   fill
-                  className="object-cover hover:scale-105 transition-transform duration-300"
+                  className="object-cover group-hover/img:scale-105 transition-transform duration-500"
                   sizes="(max-width: 768px) 50vw, 25vw"
                 />
+                <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/10 transition-colors duration-500 pointer-events-none" />
               </div>
               <div
-                className="relative w-full h-64 sm:h-72 md:h-80 overflow-hidden cursor-pointer"
+                className="preview-grid-card group/img h-64 sm:h-72 md:h-80"
                 onClick={() => openModal(images, 1)}
               >
                 <Image
                   src={images[1]}
                   alt="Аква-комплекс зона отдыха"
                   fill
-                  className="object-cover hover:scale-105 transition-transform duration-300"
+                  className="object-cover group-hover/img:scale-105 transition-transform duration-500"
                   sizes="(max-width: 768px) 50vw, 25vw"
                 />
+                <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/10 transition-colors duration-500 pointer-events-none" />
               </div>
             </div>
             <div className="space-y-4 pt-8">
               <div
-                className="relative w-full h-64 sm:h-72 md:h-80 overflow-hidden cursor-pointer"
+                className="preview-grid-card group/img h-64 sm:h-72 md:h-80"
                 onClick={() => openModal(images, 2)}
               >
                 <Image
                   src={images[2]}
                   alt="Аква-комплекс водные горки"
                   fill
-                  className="object-cover hover:scale-105 transition-transform duration-300"
+                  className="object-cover group-hover/img:scale-105 transition-transform duration-500"
                   sizes="(max-width: 768px) 50vw, 25vw"
                 />
+                <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/10 transition-colors duration-500 pointer-events-none" />
               </div>
               <div
-                className="relative w-full h-48 sm:h-56 md:h-64 overflow-hidden cursor-pointer"
+                className="preview-grid-card group/img h-48 sm:h-56 md:h-64"
                 onClick={() => openModal(images, 3)}
               >
                 <Image
                   src={images[3]}
                   alt="Аква-комплекс развлечения"
                   fill
-                  className="object-cover hover:scale-105 transition-transform duration-300"
+                  className="object-cover group-hover/img:scale-105 transition-transform duration-500"
                   sizes="(max-width: 768px) 50vw, 25vw"
                 />
+                <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/10 transition-colors duration-500 pointer-events-none" />
               </div>
             </div>
           </div>

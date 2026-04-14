@@ -1,10 +1,14 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Phone, Mail, MapPin, Waves, Leaf, UtensilsCrossed, Car, Users, Star } from "lucide-react"
+import { PageHero } from "@/components/ui/page-hero"
+import { Section } from "@/components/ui/section"
+import { SectionHeader } from "@/components/ui/section-header"
+import { Phone, Waves, Leaf, Users, Star, ShieldCheck, ExternalLink } from "lucide-react"
 import type { Metadata } from "next"
+import { HOTEL_REGISTRY } from "@/lib/hotel-registry"
+import { HotelDocumentsDownload } from "@/components/hotel-documents-download"
 
 export const metadata: Metadata = {
   title: "О комплексе | Гранд Отель & SPA Прибой — Лазаревское",
@@ -33,22 +37,15 @@ export default function AboutPage() {
     <>
       <Header />
       <main>
-        {/* Hero Section */}
-        <section className="relative pt-28 sm:pt-32 pb-12 sm:pb-16 bg-foreground">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-            <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-gold mb-3">О комплексе</p>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-4">
-              Гранд Отель и SPA Прибой
-            </h1>
-            <p className="text-base sm:text-lg text-white/80 max-w-3xl mx-auto leading-relaxed">
-              Лучший отель в Лазаревском для семейного отдыха и комфортного отпуска
-            </p>
-          </div>
-        </section>
+        <PageHero
+          eyebrow="О комплексе"
+          title="Гранд Отель и SPA Прибой"
+          description="Лучший отель в Лазаревском для семейного отдыха и комфортного отпуска"
+        />
 
         {/* Main Content */}
-        <section className="py-16 md:py-20 bg-white">
-          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <Section className="py-16 md:py-20 bg-white">
+          <div className="max-w-4xl mx-auto">
             <div className="prose prose-lg max-w-none">
               <p className="text-lg text-muted-foreground leading-relaxed mb-8">
                 Добро пожаловать в <strong>Гранд Отель и SPA Прибой</strong> — лучший отель в Лазаревском, который идеально подходит для семейного отдыха, парного релакса и людей со средним достатком, ищущих комфорт за доступные цены. Расположенный в живописном курортном поселке Лазаревское (Большой Сочи), наш отель сочетает в себе современную инфраструктуру, высокий уровень сервиса и уникальные возможности для оздоровления и отдыха.
@@ -86,12 +83,11 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
-        </section>
+        </Section>
 
         {/* Features Grid */}
-        <section className="py-16 bg-cream">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center text-foreground mb-12">Наши преимущества</h2>
+        <Section muted className="py-16">
+          <SectionHeader title="Наши преимущества" centered className="mb-12" />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
                 { icon: Users, title: "Семейный отдых", description: "Идеально для семей с детьми" },
@@ -108,8 +104,75 @@ export default function AboutPage() {
                 </div>
               ))}
             </div>
+        </Section>
+
+        <Section id="dokumenty" className="py-16 md:py-20 bg-white scroll-mt-28">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex items-center gap-3 mb-4">
+              <ShieldCheck className="h-8 w-8 text-terracotta flex-shrink-0" aria-hidden />
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+                Классификация и официальные документы
+              </h2>
+            </div>
+            <p className="text-muted-foreground leading-relaxed mb-6">
+              В соответствии с законодательством РФ о туристской деятельности средство размещения прошло
+              классификацию и включено в единый перечень классифицированных объектов туристской индустрии.
+              Ниже — ключевые реквизиты из выписки и ссылки на подтверждающие документы (PDF).
+            </p>
+            <div className="bg-cream border border-border p-6 sm:p-8 mb-10 space-y-3 text-sm sm:text-base text-muted-foreground">
+              <p>
+                <strong className="text-foreground">Объект:</strong> {HOTEL_REGISTRY.objectFullName}
+              </p>
+              <p>
+                <strong className="text-foreground">Адрес:</strong> {HOTEL_REGISTRY.address}
+              </p>
+              <p>
+                <strong className="text-foreground">Категория:</strong> {HOTEL_REGISTRY.categoryLabel} (★★★)
+              </p>
+              <p>
+                <strong className="text-foreground">Регистрационный номер свидетельства:</strong>{" "}
+                {HOTEL_REGISTRY.certificateRegNumber}
+              </p>
+              <p>
+                <strong className="text-foreground">Дата выдачи свидетельства:</strong>{" "}
+                {HOTEL_REGISTRY.certificateIssued}
+              </p>
+              <p>
+                <strong className="text-foreground">Срок действия свидетельства:</strong> до{" "}
+                {HOTEL_REGISTRY.certificateValidUntil}
+              </p>
+              <p>
+                <strong className="text-foreground">Выписка из перечня:</strong> по состоянию на{" "}
+                {HOTEL_REGISTRY.registryExcerptDate}
+              </p>
+              <p>
+                <strong className="text-foreground">Лицо, оказывающее услуги:</strong> ИП{" "}
+                {HOTEL_REGISTRY.providerName}
+              </p>
+              <p>
+                <strong className="text-foreground">ИНН / ОГРНИП:</strong> {HOTEL_REGISTRY.inn} /{" "}
+                {HOTEL_REGISTRY.ogrnip}
+              </p>
+              <p>
+                <strong className="text-foreground">Аккредитованная организация:</strong>{" "}
+                {HOTEL_REGISTRY.accreditorName}
+              </p>
+              <p>
+                <a
+                  href={HOTEL_REGISTRY.fsaCardUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-terracotta font-medium hover:underline mt-2"
+                >
+                  Открыть карточку в ЕФИС Ростуризма
+                  <ExternalLink className="h-4 w-4" aria-hidden />
+                </a>
+              </p>
+            </div>
+            <h3 className="text-xl font-semibold text-foreground mb-4">Документы для скачивания</h3>
+            <HotelDocumentsDownload variant="white" />
           </div>
-        </section>
+        </Section>
 
         {/* CTA Section */}
         <section className="py-16 bg-terracotta">
@@ -119,7 +182,7 @@ export default function AboutPage() {
               Свяжитесь с нами для бронирования или получите консультацию по телефону
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button asChild size="lg" className="bg-white text-terracotta hover:bg-cream rounded-none px-8 py-6 text-base font-medium">
+              <Button asChild size="xl" variant="inverse" className="border-white bg-white text-terracotta hover:bg-cream hover:text-terracotta">
                 <Link href="/booking">Забронировать номер</Link>
               </Button>
               <a

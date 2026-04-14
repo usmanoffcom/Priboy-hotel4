@@ -1,6 +1,9 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
+import { PageHero } from "@/components/ui/page-hero"
+import { Section } from "@/components/ui/section"
+import { SectionHeader } from "@/components/ui/section-header"
 import { Phone, Mail, MapPin, Clock, Car, Plane, Train } from "lucide-react"
 import Link from "next/link"
 import type { Metadata } from "next"
@@ -32,24 +35,17 @@ export default function ContactsPage() {
     <>
       <Header />
       <main>
-        {/* Hero */}
-        <section className="relative pt-28 sm:pt-32 pb-12 sm:pb-16 bg-foreground">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-            <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-gold mb-3">Связь с нами</p>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-4">Контакты</h1>
-            <p className="text-base sm:text-lg text-white/80 max-w-2xl mx-auto">
-              Мы всегда рады помочь вам с бронированием и ответить на вопросы
-            </p>
-          </div>
-        </section>
+        <PageHero
+          eyebrow="Связь с нами"
+          title="Контакты"
+          description="Мы всегда рады помочь вам с бронированием и ответить на вопросы"
+        />
 
-        {/* Contact Info */}
-        <section className="py-16 md:py-20 bg-cream">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <Section muted className="py-16 md:py-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
               {/* Contact Details */}
               <div>
-                <h2 className="text-3xl font-light text-foreground mb-8">Свяжитесь с нами</h2>
+                <SectionHeader title="Свяжитесь с нами" className="mb-8" />
 
                 <div className="space-y-8">
                   <div className="flex items-start gap-4">
@@ -109,7 +105,7 @@ export default function ContactsPage() {
                 </div>
 
                 <div className="mt-10">
-                  <Button asChild className="bg-terracotta hover:bg-terracotta-light text-white rounded-none px-8">
+                  <Button asChild variant="brand" className="px-8">
                     <Link href="/booking">Забронировать номер</Link>
                   </Button>
                 </div>
@@ -117,7 +113,7 @@ export default function ContactsPage() {
 
               {/* Map */}
               <div className="bg-white border border-border overflow-hidden rounded-sm">
-                <div className="relative w-full" style={{ paddingBottom: '75%' }}>
+                <div className="relative w-full aspect-[4/3]">
                   <iframe
                     src="https://yandex.ru/map-widget/v1/?ll=39.339238%2C43.912423&z=15&pt=39.339238%2C43.912423&l=map"
                     className="absolute top-0 left-0 w-full h-full"
@@ -139,18 +135,13 @@ export default function ContactsPage() {
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+        </Section>
 
         {/* How to Get */}
-        <section className="py-20 bg-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <p className="text-sm tracking-[0.2em] uppercase text-terracotta mb-4">Расположение</p>
-              <h2 className="text-4xl font-light text-foreground">Как добраться</h2>
-            </div>
+        <Section className="py-20 bg-white">
+          <SectionHeader eyebrow="Расположение" title="Как добраться" centered className="mb-16" />
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="p-8 bg-cream border border-border">
                 <div className="w-14 h-14 bg-terracotta/10 rounded-full flex items-center justify-center mb-6">
                   <Plane className="h-6 w-6 text-terracotta" />
@@ -194,8 +185,7 @@ export default function ContactsPage() {
                 </ul>
               </div>
             </div>
-          </div>
-        </section>
+        </Section>
 
       </main>
       <Footer />

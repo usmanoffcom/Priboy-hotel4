@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { rooms } from "@/lib/rooms-data"
 import type { Metadata } from "next"
+import { PageHero } from "@/components/ui/page-hero"
+import { Section } from "@/components/ui/section"
 
 export const metadata: Metadata = {
   title: "Номера и цены | Гранд Отель & SPA Прибой — Лазаревское",
@@ -34,17 +36,11 @@ export default function RoomsPage() {
     <>
       <Header />
       <main>
-        {/* Hero */}
-        <section className="relative pt-28 sm:pt-32 pb-12 sm:pb-16 bg-foreground">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-            <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-gold mb-3">Размещение</p>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-4">Номера и цены</h1>
-            <p className="text-base sm:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed">
-              Выберите идеальный номер для вашего отдыха. Все номера оснащены современными удобствами и индивидуальным
-              климат-контролем.
-            </p>
-          </div>
-        </section>
+        <PageHero
+          eyebrow="Размещение"
+          title="Номера и цены"
+          description="Выберите идеальный номер для вашего отдыха. Все номера оснащены современными удобствами и индивидуальным климат-контролем."
+        />
 
         {/* Price Info */}
         <section className="py-6 bg-cream-dark border-b border-border">
@@ -68,7 +64,7 @@ export default function RoomsPage() {
                   <strong>Дети до 3 лет</strong> — бесплатно! С предоставлением места!
                 </span>
               </div>
-              <Button asChild variant="outline" size="sm" className="rounded-none bg-transparent text-sm">
+              <Button asChild variant="brand-outline" size="sm" className="bg-transparent text-sm">
                 <Link href="/prices">Подробный прайс</Link>
               </Button>
             </div>
@@ -76,15 +72,13 @@ export default function RoomsPage() {
         </section>
 
         {/* Rooms Grid - 4 columns for 4 room types */}
-        <section className="py-16 bg-cream">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <Section muted className="py-16">
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
               {rooms.map((room) => (
                 <RoomCard key={room.id} room={room} />
               ))}
             </div>
-          </div>
-        </section>
+        </Section>
 
         {/* Amenities */}
         <RoomAmenities />
@@ -99,16 +93,17 @@ export default function RoomsPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 asChild
-                size="lg"
-                className="bg-terracotta hover:bg-terracotta-light text-white rounded-none px-8"
+                size="xl"
+                variant="brand"
+                className="px-8"
               >
                 <Link href="/booking">Забронировать</Link>
               </Button>
               <Button
                 asChild
-                size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-foreground rounded-none px-8 bg-transparent"
+                size="xl"
+                variant="inverse"
+                className="px-8 bg-transparent"
               >
                 <Link href="/prices">Смотреть цены</Link>
               </Button>

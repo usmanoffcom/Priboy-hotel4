@@ -15,10 +15,11 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Отели в Лазаревское — Лучшие гостиницы 2026",
-    description: "Лазаревский отель для семейного отдыха. SPA-комплексы, бассейны, рестораны. Бронируйте напрямую!",
+    description: "Лазаревский отель для семейного отдыха. Гранд Отель Прибой и Гостиница Прибой: SPA, бассейны, рестораны. Бронируйте напрямую!",
     url: "https://priboy-spa.ru/oteli-lazarevskoe",
     type: "website",
     locale: "ru_RU",
+    images: [{ url: "https://framerusercontent.com/images/knZyYzLGIo9To06MDK80T4PMGA.jpg", width: 1200, height: 630, alt: "Отели в Лазаревском" }],
   },
 }
 
@@ -82,13 +83,13 @@ export default function OteliLazarevskoe() {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg" className="bg-terracotta hover:bg-terracotta-light text-white rounded-none px-14 h-16 text-base font-semibold group">
+                <Button asChild size="lg" className="bg-terracotta hover:bg-terracotta-light text-white px-14 h-16 text-base font-semibold group">
                   <Link href="/booking">
                     Забронировать
                     <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-foreground rounded-none px-14 h-16 text-base font-semibold bg-white/10 backdrop-blur-sm">
+                <Button asChild size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-foreground px-14 h-16 text-base font-semibold bg-white/10 backdrop-blur-sm">
                   <a href="tel:+79883443333">
                     <Phone className="w-5 h-5 mr-3" />
                     +7 (988) 344-33-33
@@ -170,7 +171,7 @@ export default function OteliLazarevskoe() {
                     <span className="text-4xl font-bold text-terracotta mx-2">7 100 ₽</span>
                     <span className="text-white/60 text-sm">/ ночь</span>
                   </div>
-                  <Button asChild size="lg" className="bg-terracotta hover:bg-terracotta-light text-white rounded-none px-10 py-6 text-base font-semibold w-full sm:w-auto">
+                  <Button asChild size="lg" className="bg-terracotta hover:bg-terracotta-light text-white px-10 py-6 text-base font-semibold w-full sm:w-auto">
                     <Link href="/booking">Забронировать номер</Link>
                   </Button>
                 </div>
@@ -246,7 +247,7 @@ export default function OteliLazarevskoe() {
                       </div>
                       <Button
                         asChild
-                        className="bg-foreground hover:bg-foreground/90 text-white rounded-none px-6 py-5 group/btn"
+                        className="bg-foreground hover:bg-foreground/90 text-white px-6 py-5 group/btn"
                       >
                         <Link href={hotel.url} target="_blank">
                           Подробнее
@@ -300,7 +301,7 @@ export default function OteliLazarevskoe() {
               <div className="relative">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-4">
-                    <div className="relative h-48 overflow-hidden">
+                    <div className="preview-grid-card cursor-default h-48">
                       <Image
                         src="/lobby.png"
                         alt="Интерьер отеля"
@@ -308,7 +309,7 @@ export default function OteliLazarevskoe() {
                         className="object-cover"
                       />
                     </div>
-                    <div className="relative h-64 overflow-hidden">
+                    <div className="preview-grid-card cursor-default h-64">
                       <Image
                         src="/spa/002.jpg"
                         alt="SPA комплекс"
@@ -319,7 +320,7 @@ export default function OteliLazarevskoe() {
                     </div>
                   </div>
                   <div className="space-y-4 pt-8">
-                    <div className="relative h-64 overflow-hidden">
+                    <div className="preview-grid-card cursor-default h-64">
                       <Image
                         src="/reception.png"
                         alt="Ресепшн"
@@ -327,7 +328,7 @@ export default function OteliLazarevskoe() {
                         className="object-cover"
                       />
                     </div>
-                    <div className="relative h-48 overflow-hidden">
+                    <div className="preview-grid-card cursor-default h-48">
                       <Image
                         src="/fasad2.png"
                         alt="Фасад отеля"
@@ -391,10 +392,10 @@ export default function OteliLazarevskoe() {
               Забронируйте лучший лазаревский отель прямо сейчас. Мы гарантируем лучшие цены и качественный сервис.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="bg-terracotta hover:bg-terracotta-light text-white rounded-none px-12 h-16 text-lg font-semibold">
+              <Button asChild size="lg" className="bg-terracotta hover:bg-terracotta-light text-white px-12 h-16 text-lg font-semibold">
                 <Link href="/booking">Забронировать онлайн</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-foreground rounded-none px-12 h-16 text-lg font-semibold bg-transparent">
+              <Button asChild size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-foreground px-12 h-16 text-lg font-semibold bg-transparent">
                 <a href="tel:+79883443333">
                   <Phone className="w-5 h-5 mr-2" />
                   Позвонить

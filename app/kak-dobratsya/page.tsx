@@ -6,6 +6,9 @@ import Link from "next/link"
 import Image from "next/image"
 import type { Metadata } from "next"
 import { howToGetData } from "@/lib/lazarevskoe-data"
+import { PageHero } from "@/components/ui/page-hero"
+import { Section } from "@/components/ui/section"
+import { SectionHeader } from "@/components/ui/section-header"
 
 export const metadata: Metadata = {
   title: "Как добраться до Лазаревского — маршруты | Гранд Отель & SPA Прибой",
@@ -16,9 +19,10 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Как добраться до Лазаревского — маршруты",
-    description: "Как добраться до Лазаревского из Москвы, Санкт-Петербурга и других городов.",
+    description: "Как добраться до Лазаревского из Москвы, Санкт-Петербурга и других городов. Самолёт, поезд, автомобиль, трансфер.",
     url: "https://priboy-spa.ru/kak-dobratsya",
     type: "website",
+    images: [{ url: "https://framerusercontent.com/images/knZyYzLGIo9To06MDK80T4PMGA.jpg", width: 1200, height: 630, alt: "Лазаревское — как добраться" }],
   },
 }
 
@@ -29,26 +33,15 @@ export default function HowToGetPage() {
     <>
       <Header />
       <main>
-        {/* Hero Section */}
-        <section className="relative pt-28 sm:pt-32 pb-12 sm:pb-16 bg-foreground">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-            <p className="text-sm tracking-[0.2em] uppercase text-gold mb-4">Путешествие</p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6">
-              Как добраться до Лазаревского
-            </h1>
-            <p className="text-lg text-white/80 max-w-3xl mx-auto">
-              Удобные маршруты из крупных городов России на самолете, поезде или автомобиле
-            </p>
-          </div>
-        </section>
+        <PageHero
+          eyebrow="Путешествие"
+          title="Как добраться до Лазаревского"
+          description="Удобные маршруты из крупных городов России на самолете, поезде или автомобиле"
+        />
 
         {/* From Moscow */}
-        <section className="py-16 md:py-20 bg-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <p className="text-sm tracking-[0.2em] uppercase text-terracotta mb-4">Москва → Лазаревское</p>
-              <h2 className="text-3xl md:text-4xl font-light text-foreground">Из Москвы</h2>
-            </div>
+        <Section className="py-16 md:py-20 bg-white">
+          <SectionHeader eyebrow="Москва → Лазаревское" title="Из Москвы" centered className="mb-12" />
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Plane */}
@@ -119,16 +112,11 @@ export default function HowToGetPage() {
                 </ul>
               </div>
             </div>
-          </div>
-        </section>
+        </Section>
 
         {/* From Saint Petersburg */}
-        <section className="py-16 md:py-20 bg-cream">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <p className="text-sm tracking-[0.2em] uppercase text-terracotta mb-4">Санкт-Петербург → Лазаревское</p>
-              <h2 className="text-3xl md:text-4xl font-light text-foreground">Из Санкт-Петербурга</h2>
-            </div>
+        <Section muted className="py-16 md:py-20">
+          <SectionHeader eyebrow="Санкт-Петербург → Лазаревское" title="Из Санкт-Петербурга" centered className="mb-12" />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {/* Plane */}
@@ -175,16 +163,16 @@ export default function HowToGetPage() {
                 </ul>
               </div>
             </div>
-          </div>
-        </section>
+        </Section>
 
         {/* From Sochi Airport */}
-        <section className="py-16 md:py-20 bg-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <p className="text-sm tracking-[0.2em] uppercase text-terracotta mb-4">Аэропорт/вокзал Сочи → Лазаревское</p>
-              <h2 className="text-3xl md:text-4xl font-light text-foreground">Из Сочи</h2>
-            </div>
+        <Section className="py-16 md:py-20 bg-white">
+          <SectionHeader
+            eyebrow="Аэропорт/вокзал Сочи → Лазаревское"
+            title="Из Сочи"
+            centered
+            className="mb-12"
+          />
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Bus */}
@@ -230,19 +218,17 @@ export default function HowToGetPage() {
                 <p className="text-terracotta font-medium">{fromSochi.taxi.price}</p>
               </div>
             </div>
-          </div>
-        </section>
+        </Section>
 
 
         {/* Map Section */}
-        <section className="py-16 md:py-20 bg-cream">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4">Расположение отеля</h2>
-              <p className="text-muted-foreground">
-                Гранд Отель & SPA Прибой находится в поселке Лазаревское, Сочи
-              </p>
-            </div>
+        <Section muted className="py-16 md:py-20">
+          <SectionHeader
+            title="Расположение отеля"
+            description="Гранд Отель & SPA Прибой находится в поселке Лазаревское, Сочи"
+            centered
+            className="mb-12"
+          />
             <div className="bg-white p-4 border border-border">
               <div className="aspect-video bg-cream flex items-center justify-center">
                 <div className="text-center">
@@ -252,8 +238,7 @@ export default function HowToGetPage() {
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+        </Section>
       </main>
       <Footer />
     </>

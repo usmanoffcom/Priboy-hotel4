@@ -26,3 +26,6 @@ Allow: /contacts
 # Sitemap
 Sitemap: https://priboy-spa.ru/sitemap.xml
 
+# LLMs / AI: структурированное описание сайта для ИИ-ботов
+# https://priboy-spa.ru/llms.txt
+

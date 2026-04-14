@@ -8,6 +8,10 @@ import { Clock, Users, Thermometer, ArrowRight, Info } from "lucide-react"
 import Link from "next/link"
 import { spaServices, spaInfo } from "@/lib/spa-data"
 import { ImageModal } from "@/components/image-modal"
+import { PageHero } from "@/components/ui/page-hero"
+import { Section } from "@/components/ui/section"
+import { SectionHeader } from "@/components/ui/section-header"
+import "./spa.css"
 
 export default function SpaPage() {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null)
@@ -26,32 +30,23 @@ export default function SpaPage() {
     <>
       <Header />
       <main>
-        {/* Hero */}
-        <section
-          className="relative pt-28 sm:pt-32 pb-12 sm:pb-16 flex items-center justify-center bg-cover bg-center"
-          style={{
-            backgroundImage: `url('https://framerusercontent.com/images/3j6TVAfQruYEBYhWh9WlhjppzAA.jpg')`,
-          }}
-        >
-          <div className="absolute inset-0 bg-foreground/60" />
-          <div className="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-            <p className="text-xs sm:text-sm tracking-[0.2em] uppercase mb-3 text-gold">Wellness & Relax</p>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-light mb-4">SPA Комплекс в Прибой со своим бассейном</h1>
-            <p className="text-base sm:text-lg text-white/90 max-w-2xl mx-auto leading-relaxed">
-              Собственный SPA комплекс с бассейном в Лазаревском большого Сочи
-            </p>
-          </div>
-        </section>
+        <PageHero
+          eyebrow="Wellness & Relax"
+          title="SPA Комплекс в Прибой со своим бассейном"
+          description="Собственный SPA комплекс с бассейном в Лазаревском большого Сочи"
+          className="bg-cover bg-center"
+          backgroundImage="https://framerusercontent.com/images/3j6TVAfQruYEBYhWh9WlhjppzAA.jpg"
+        />
 
         {/* Quick Info */}
-        <section className="py-6 bg-terracotta text-white">
+        <section className="py-6 bg-gradient-to-r from-terracotta to-forest/80 text-white">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12 text-sm">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 glass-pill">
                 <Info className="h-4 w-4" />
                 <span>{spaInfo.closedDay}</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 glass-pill">
                 <Clock className="h-4 w-4" />
                 <span>{spaInfo.schedule}</span>
               </div>
@@ -60,12 +55,8 @@ export default function SpaPage() {
         </section>
 
         {/* Saunas Grid with Links */}
-        <section className="py-16 md:py-20 bg-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <p className="text-sm tracking-[0.2em] uppercase text-terracotta mb-3">Банный комплекс</p>
-              <h2 className="text-3xl md:text-4xl font-light text-foreground">Наши SPA услуги</h2>
-            </div>
+        <Section className="py-16 md:py-20 bg-white">
+          <SectionHeader eyebrow="Банный комплекс" title="Наши SPA услуги" centered className="mb-12" />
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {spaServices.map((service) => (
@@ -114,12 +105,10 @@ export default function SpaPage() {
                 </div>
               ))}
             </div>
-          </div>
-        </section>
+        </Section>
 
         {/* Info Section */}
-        <section className="py-16 md:py-20 bg-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <Section className="py-16 md:py-20 bg-white">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <p className="text-sm tracking-[0.2em] uppercase text-terracotta mb-3">Информация для гостей</p>
@@ -170,13 +159,14 @@ export default function SpaPage() {
                       0
                     )
                   }
-                  className="w-full h-52 overflow-hidden cursor-pointer hover:opacity-90 transition-opacity"
+                  className="preview-grid-card group/img h-52"
                 >
                 <img
                   src="https://framerusercontent.com/images/9D1V0cknVILSFKgxaj1k69Vmqrg.jpg"
                   alt="SPA комплекс"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500"
                 />
+                <span className="absolute inset-0 bg-black/0 group-hover/img:bg-black/10 transition-colors duration-500 pointer-events-none" aria-hidden />
                 </button>
                 <button
                   onClick={() =>
@@ -188,18 +178,18 @@ export default function SpaPage() {
                       1
                     )
                   }
-                  className="w-full h-52 overflow-hidden cursor-pointer hover:opacity-90 transition-opacity mt-8"
+                  className="preview-grid-card group/img h-52 mt-8"
                 >
                 <img
                   src="/spa/telegram-cloud-photo-size-2-5258339795367740863-y.jpg"
                   alt="Бассейн"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500"
                 />
+                <span className="absolute inset-0 bg-black/0 group-hover/img:bg-black/10 transition-colors duration-500 pointer-events-none" aria-hidden />
                 </button>
               </div>
             </div>
-          </div>
-        </section>
+        </Section>
 
         {/* Schedule Notice */}
         <section className="py-12 bg-cream-dark">
@@ -215,12 +205,7 @@ export default function SpaPage() {
         </section>
 
         {/* CTA */}
-        <section
-          className="relative py-20 bg-cover bg-center"
-          style={{
-            backgroundImage: `url('https://framerusercontent.com/images/yuPh18wvEqOXpEI8WPezjKeSjzM.jpg')`,
-          }}
-        >
+        <section className="relative py-20 bg-cover bg-center spa-cta-bg">
           <div className="absolute inset-0 bg-foreground/70" />
           <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl md:text-4xl font-light text-white mb-4">Подарите себе релакс</h2>
@@ -230,16 +215,17 @@ export default function SpaPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 asChild
-                size="lg"
-                className="bg-terracotta hover:bg-terracotta-light text-white rounded-none px-10"
+                size="xl"
+                variant="brand"
+                className="px-10"
               >
                 <Link href="/booking">Забронировать</Link>
               </Button>
               <Button
                 asChild
-                size="lg"
-                variant="outline"
-                className="bg-transparent border-white text-white rounded-none px-10 hover:bg-white hover:text-foreground"
+                size="xl"
+                variant="inverse"
+                className="bg-transparent px-10"
               >
                 <Link href="/contacts">Контакты</Link>
               </Button>

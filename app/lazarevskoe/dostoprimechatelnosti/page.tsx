@@ -16,9 +16,10 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Достопримечательности Лазаревского — что посмотреть",
-    description: "Лучшие достопримечательности Лазаревского: аквапарки, водопады, дольмены, музеи.",
+    description: "Лучшие достопримечательности Лазаревского: аквапарки, водопады, дольмены, музеи, дельфинарий. Экскурсии и развлечения.",
     url: "https://priboy-spa.ru/lazarevskoe/dostoprimechatelnosti",
     type: "website",
+    images: [{ url: "https://framerusercontent.com/images/knZyYzLGIo9To06MDK80T4PMGA.jpg", width: 1200, height: 630, alt: "Достопримечательности Лазаревского" }],
   },
 }
 
@@ -125,10 +126,10 @@ export default function AttractionsPage() {
               Мы поможем организовать экскурсии и трансферы.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="bg-terracotta hover:bg-terracotta-light text-white rounded-none px-8">
+              <Button asChild size="lg" className="bg-terracotta hover:bg-terracotta-light text-white px-8">
                 <Link href="/booking">Забронировать номер</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-terracotta text-terracotta hover:bg-terracotta/10 rounded-none px-8">
+              <Button asChild size="lg" variant="outline" className="border-terracotta text-terracotta hover:bg-terracotta/10 px-8">
                 <Link href="/contacts">Связаться с нами</Link>
               </Button>
             </div>

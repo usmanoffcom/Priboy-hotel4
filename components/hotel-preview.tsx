@@ -44,7 +44,7 @@ export function HotelPreview() {
               ))}
             </ul>
 
-            <Button asChild className="bg-terracotta hover:bg-terracotta-light text-white rounded-none px-8 py-6 text-base font-medium">
+            <Button asChild className="bg-terracotta hover:bg-terracotta-light text-white px-8 py-6 text-base font-medium">
               <Link href="/o-komplekse">Подробнее об отеле</Link>
             </Button>
           </div>
@@ -52,43 +52,55 @@ export function HotelPreview() {
           {/* Image Grid - справа */}
           <div className="grid grid-cols-2 gap-4 order-1 lg:order-2">
             <div className="space-y-4">
-              <div className="relative w-full h-48 sm:h-56 md:h-64 overflow-hidden">
+              <div className="preview-grid-card group/img h-48 sm:h-56 md:h-64">
                 <ClickableImage
                   src="/reception.png"
                   alt="Ресепшн Гранд Отель SPA Прибой — стойка регистрации в Лазаревском"
                   gallery={hotelGallery}
                   index={0}
                   sizes="(max-width: 768px) 50vw, 25vw"
+                  hoverOpacity={false}
+                  className="object-cover group-hover/img:scale-105 transition-transform duration-500"
                 />
+                <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/10 transition-colors duration-500 pointer-events-none" />
               </div>
-              <div className="relative w-full h-64 sm:h-72 md:h-80 overflow-hidden">
+              <div className="preview-grid-card group/img h-64 sm:h-72 md:h-80">
                 <ClickableImage
                   src="/lobby.png"
                   alt="Лобби Гранд Отель SPA Прибой — интерьер отеля в Лазаревском"
                   gallery={hotelGallery}
                   index={1}
                   sizes="(max-width: 768px) 50vw, 25vw"
+                  hoverOpacity={false}
+                  className="object-cover group-hover/img:scale-105 transition-transform duration-500"
                 />
+                <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/10 transition-colors duration-500 pointer-events-none" />
               </div>
             </div>
             <div className="space-y-4 pt-8">
-              <div className="relative w-full h-64 sm:h-72 md:h-80 overflow-hidden">
+              <div className="preview-grid-card group/img h-64 sm:h-72 md:h-80">
                 <ClickableImage
                   src="/fasad.png"
                   alt="Фасад Гранд Отель SPA Прибой — вид на отель в Лазаревском"
                   gallery={hotelGallery}
                   index={2}
                   sizes="(max-width: 768px) 50vw, 25vw"
+                  hoverOpacity={false}
+                  className="object-cover group-hover/img:scale-105 transition-transform duration-500"
                 />
+                <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/10 transition-colors duration-500 pointer-events-none" />
               </div>
-              <div className="relative w-full h-48 sm:h-56 md:h-64 overflow-hidden">
+              <div className="preview-grid-card group/img h-48 sm:h-56 md:h-64">
                 <ClickableImage
                   src="/fasad2.png"
                   alt="Гранд Отель SPA Прибой — фасад здания в центре Лазаревского"
                   gallery={hotelGallery}
                   index={3}
                   sizes="(max-width: 768px) 50vw, 25vw"
+                  hoverOpacity={false}
+                  className="object-cover group-hover/img:scale-105 transition-transform duration-500"
                 />
+                <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/10 transition-colors duration-500 pointer-events-none" />
               </div>
             </div>
           </div>

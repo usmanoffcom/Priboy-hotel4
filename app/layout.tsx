@@ -7,7 +7,7 @@ import "./globals.css"
 
 const onest = Onest({
   subsets: ["latin", "cyrillic"],
-  weight: ["400", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-onest",
   display: "swap",
 })
@@ -23,17 +23,17 @@ export const metadata: Metadata = {
   keywords: "лазаревский отель, отели в лазаревское, отель лазаревское, гостиница лазаревское, отдых в лазаревском",
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/icon.svg', type: 'image/svg+xml' },
-      { url: '/favicon-16x16.png', type: 'image/png', sizes: '16x16' },
+      { url: '/favicon-opaque.svg', type: 'image/svg+xml', sizes: 'any' },
       { url: '/favicon-32x32.png', type: 'image/png', sizes: '32x32' },
+      { url: '/favicon-16x16.png', type: 'image/png', sizes: '16x16' },
+      { url: '/favicon.ico', sizes: 'any' },
       { url: '/favicon-192x192.png', type: 'image/png', sizes: '192x192' },
       { url: '/favicon-512x512.png', type: 'image/png', sizes: '512x512' },
     ],
     apple: [
       { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
     ],
-    shortcut: '/favicon.ico',
+    shortcut: '/favicon-32x32.png',
   },
 }
 
@@ -54,6 +54,7 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://framerusercontent.com" />
         <link rel="preconnect" href="https://mc.yandex.ru" />
+        <link rel="dns-prefetch" href="https://top-fwz1.mail.ru" />
         <link rel="dns-prefetch" href="https://ru-ibe.tlintegration.ru" />
         <link rel="dns-prefetch" href="https://ibe.tlintegration.ru" />
         <link rel="dns-prefetch" href="https://ibe.tlintegration.com" />
@@ -100,7 +101,7 @@ export default function RootLayout({
                 for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
                 k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
               })(window, document,'script','https://mc.yandex.ru/metrika/tag.js', 'ym');
-              ym(99041885, 'init', {webvisor:true, clickmap:true, accurateTrackBounce:true, trackLinks:true});
+              ym(99041885, 'init', {defer:true, webvisor:true, clickmap:true, accurateTrackBounce:true, trackLinks:true});
             `,
           }}
         />
@@ -108,8 +109,34 @@ export default function RootLayout({
           <div>
             <img
               src="https://mc.yandex.ru/watch/99041885"
-              style={{ position: "absolute", left: "-9999px" }}
-              alt=""
+              className="absolute left-[-9999px]"
+              alt="Яндекс Метрика"
+            />
+          </div>
+        </noscript>
+        <Script
+          id="top-mail-ru"
+          strategy="lazyOnload"
+          dangerouslySetInnerHTML={{
+            __html: `
+              var _tmr = window._tmr || (window._tmr = []);
+              _tmr.push({id: "3749541", type: "pageView", start: (new Date()).getTime()});
+              (function (d, w, id) {
+                if (d.getElementById(id)) return;
+                var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+                ts.src = "https://top-fwz1.mail.ru/js/code.js";
+                var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+                if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+              })(document, window, "tmr-code");
+            `,
+          }}
+        />
+        <noscript>
+          <div>
+            <img
+              src="https://top-fwz1.mail.ru/counter?id=3749541;js=na"
+              className="absolute left-[-9999px]"
+              alt="Top.Mail.Ru"
             />
           </div>
         </noscript>

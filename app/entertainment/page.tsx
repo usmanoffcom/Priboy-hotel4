@@ -9,6 +9,9 @@ import { Button } from "@/components/ui/button"
 import { Waves, Users, Coffee, Sun, UtensilsCrossed } from "lucide-react"
 import { ImageModal } from "@/components/image-modal"
 import { AquaPromoModal } from "@/components/aqua-promo-modal"
+import { PageHero } from "@/components/ui/page-hero"
+import { Section } from "@/components/ui/section"
+import { SectionHeader } from "@/components/ui/section-header"
 
 const aquaImages = [
   "/imgi_38_P1363925_1.jpg",
@@ -58,78 +61,88 @@ export default function EntertainmentPage() {
     <>
       <Header />
       <main>
-        {/* Hero Section */}
-        <section className="relative pt-28 sm:pt-32 pb-12 sm:pb-16 bg-foreground">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-            <p className="text-sm tracking-[0.2em] uppercase text-gold mb-4">Для вашего комфорта</p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6">
-              Аква-комплекс «Прибой»
-            </h1>
-            <p className="text-lg text-white/80 max-w-3xl mx-auto mb-4">
-              Современный центр водных развлечений с бассейнами, горками, детскими зонами и территорией для отдыха
-            </p>
-            <p className="text-base text-gold font-medium">
-              Для гостей отеля — скидка 50% на посещение!
-            </p>
+        <PageHero
+          eyebrow="Для вашего комфорта"
+          title="Аква-комплекс «Прибой»"
+          description="Современный центр водных развлечений с бассейнами, горками, детскими зонами и территорией для отдыха"
+        />
+        <section className="pb-6 bg-foreground">
+          <div className="site-container text-center">
+            <p className="text-base text-gold font-medium">Для гостей отеля — скидка 50% на посещение!</p>
           </div>
         </section>
 
         {/* Main Content */}
-        <section className="py-16 sm:py-20 bg-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <Section className="py-16 sm:py-20 bg-white">
             {/* Image Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-4">
                   <button
+                    type="button"
                     onClick={() => handleImageClick(0)}
-                    className="relative w-full h-48 sm:h-56 md:h-64 overflow-hidden cursor-pointer hover:opacity-90 transition-opacity"
+                    className="preview-grid-card group/img h-48 sm:h-56 md:h-64"
+                    aria-label="Открыть фото: Аква-комплекс бассейн"
+                    title="Открыть фото: Аква-комплекс бассейн"
                   >
                     <Image
                       src="/imgi_38_P1363925_1.jpg"
-                      alt="Аква-комплекс бассейн"
+                      alt="Аква-комплекс Прибой в Лазаревском — бассейн"
                       fill
-                      className="object-cover"
+                      className="object-cover group-hover/img:scale-105 transition-transform duration-500"
                       sizes="(max-width: 768px) 50vw, 25vw"
                     />
+                    <span className="absolute inset-0 bg-black/0 group-hover/img:bg-black/10 transition-colors duration-500 pointer-events-none" aria-hidden />
                   </button>
                   <button
+                    type="button"
                     onClick={() => handleImageClick(1)}
-                    className="relative w-full h-64 sm:h-72 md:h-80 overflow-hidden cursor-pointer hover:opacity-90 transition-opacity"
+                    className="preview-grid-card group/img h-64 sm:h-72 md:h-80"
+                    aria-label="Открыть фото: Аква-комплекс зона отдыха"
+                    title="Открыть фото: Аква-комплекс зона отдыха"
                   >
                     <Image
                       src="/imgi_41_P1363557.jpg"
-                      alt="Аква-комплекс зона отдыха"
+                      alt="Аква-комплекс Прибой — зона отдыха у бассейна"
                       fill
-                      className="object-cover"
+                      className="object-cover group-hover/img:scale-105 transition-transform duration-500"
                       sizes="(max-width: 768px) 50vw, 25vw"
                     />
+                    <span className="absolute inset-0 bg-black/0 group-hover/img:bg-black/10 transition-colors duration-500 pointer-events-none" aria-hidden />
                   </button>
                 </div>
                 <div className="space-y-4 pt-8">
                   <button
+                    type="button"
                     onClick={() => handleImageClick(2)}
-                    className="relative w-full h-64 sm:h-72 md:h-80 overflow-hidden cursor-pointer hover:opacity-90 transition-opacity"
+                    className="preview-grid-card group/img h-64 sm:h-72 md:h-80"
+                    aria-label="Открыть фото: Аква-комплекс водные горки"
+                    title="Открыть фото: Аква-комплекс водные горки"
                   >
                     <Image
                       src="/imgi_42_P1363565.jpg"
-                      alt="Аква-комплекс водные горки"
+                      alt="Аква-комплекс Прибой — водные горки"
                       fill
-                      className="object-cover"
+                      className="object-cover group-hover/img:scale-105 transition-transform duration-500"
                       sizes="(max-width: 768px) 50vw, 25vw"
                     />
+                    <span className="absolute inset-0 bg-black/0 group-hover/img:bg-black/10 transition-colors duration-500 pointer-events-none" aria-hidden />
                   </button>
                   <button
+                    type="button"
                     onClick={() => handleImageClick(3)}
-                    className="relative w-full h-48 sm:h-56 md:h-64 overflow-hidden cursor-pointer hover:opacity-90 transition-opacity"
+                    className="preview-grid-card group/img h-48 sm:h-56 md:h-64"
+                    aria-label="Открыть фото: Аква-комплекс развлечения"
+                    title="Открыть фото: Аква-комплекс развлечения"
                   >
                     <Image
                       src="/imgi_75_P1363992_1.jpg"
-                      alt="Аква-комплекс развлечения"
+                      alt="Аква-комплекс Прибой — развлечения для гостей"
                       fill
-                      className="object-cover"
+                      className="object-cover group-hover/img:scale-105 transition-transform duration-500"
                       sizes="(max-width: 768px) 50vw, 25vw"
                     />
+                    <span className="absolute inset-0 bg-black/0 group-hover/img:bg-black/10 transition-colors duration-500 pointer-events-none" aria-hidden />
                   </button>
                 </div>
               </div>
@@ -163,7 +176,7 @@ export default function EntertainmentPage() {
                   ))}
                 </ul>
 
-                <Button asChild className="bg-terracotta hover:bg-terracotta-light text-white rounded-none px-8 py-6 text-base font-medium">
+                <Button asChild variant="brand" className="px-8 py-6 text-base font-medium">
                   <Link href="/booking">Забронировать номер</Link>
                 </Button>
               </div>
@@ -233,19 +246,17 @@ export default function EntertainmentPage() {
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+        </Section>
 
         {/* Menu Section */}
-        <section className="py-16 md:py-20 bg-cream">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <p className="text-sm tracking-[0.2em] uppercase text-terracotta mb-4">Меню</p>
-              <h2 className="text-3xl md:text-4xl font-light text-foreground mb-6">Меню ресторана аква-комплекса</h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed">
-                Ознакомьтесь с нашим меню, включающим авторские блюда из свежих морепродуктов и традиции кавказской кухни
-              </p>
-            </div>
+        <Section muted className="py-16 md:py-20">
+          <SectionHeader
+            eyebrow="Меню"
+            title="Меню ресторана аква-комплекса"
+            description="Ознакомьтесь с нашим меню, включающим авторские блюда из свежих морепродуктов и традиции кавказской кухни"
+            centered
+            className="mb-12"
+          />
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
               <div className="bg-white p-8 border border-border">
@@ -343,24 +354,19 @@ export default function EntertainmentPage() {
                 Полное меню с ценами доступно в ресторане аква-комплекса или по запросу
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button asChild className="bg-terracotta hover:bg-terracotta-light text-white rounded-none px-8">
+                <Button asChild variant="brand" className="px-8">
                   <a href="tel:+79890305555">Позвонить +7 989 030 5555</a>
                 </Button>
-                <Button asChild variant="outline" className="border-terracotta text-terracotta hover:bg-terracotta/10 rounded-none px-8">
+                <Button asChild variant="brand-outline" className="px-8">
                   <a href="mailto:info@priboy-aquacomplex.ru">info@priboy-aquacomplex.ru</a>
                 </Button>
               </div>
             </div>
-          </div>
-        </section>
+        </Section>
 
         {/* Specialties */}
-        <section className="py-16 md:py-20 bg-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <p className="text-sm tracking-[0.2em] uppercase text-terracotta mb-4">Рекомендуем</p>
-              <h2 className="text-4xl md:text-5xl font-light text-foreground">Фирменные блюда</h2>
-            </div>
+        <Section className="py-16 md:py-20 bg-white">
+          <SectionHeader eyebrow="Рекомендуем" title="Фирменные блюда" centered className="mb-16" />
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {specialties.map((dish, index) => (
@@ -386,8 +392,7 @@ export default function EntertainmentPage() {
                 </div>
               ))}
             </div>
-          </div>
-        </section>
+        </Section>
 
         {/* CTA */}
         <section className="py-16 bg-terracotta text-white text-center">
@@ -401,7 +406,7 @@ export default function EntertainmentPage() {
             <p className="text-base mb-8 text-white/70">
               Бассейны, водные горки, детские зоны и кафе — всё для вашего комфорта
             </p>
-            <Button asChild size="lg" className="bg-white hover:bg-cream text-terracotta rounded-none px-10 py-6 text-base font-medium">
+            <Button asChild size="xl" variant="inverse" className="bg-white text-terracotta border-white hover:bg-cream hover:text-terracotta px-10 py-6 text-base font-medium">
               <Link href="/booking">Забронировать номер</Link>
             </Button>
           </div>

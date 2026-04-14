@@ -24,10 +24,10 @@ export default function NotFound() {
             Вернитесь на главную страницу или воспользуйтесь навигацией.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-terracotta hover:bg-terracotta-light text-white rounded-none px-8">
+            <Button asChild size="lg" className="bg-terracotta hover:bg-terracotta-light text-white px-8">
               <Link href="/">На главную</Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-terracotta text-terracotta hover:bg-terracotta/10 rounded-none px-8">
+            <Button asChild size="lg" variant="outline" className="border-terracotta text-terracotta hover:bg-terracotta/10 px-8">
               <Link href="/rooms">Номера</Link>
             </Button>
           </div>

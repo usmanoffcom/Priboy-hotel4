@@ -15,9 +15,10 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Лазаревское — курорт на Черном море | Гранд Отель & SPA Прибой",
-    description: "Лазаревское — популярный курорт Большого Сочи. Пляжи, достопримечательности, развлечения.",
+    description: "Лазаревское — популярный курорт Большого Сочи. Пляжи, достопримечательности, развлечения. Отдых в Гранд Отель & SPA Прибой.",
     url: "https://priboy-spa.ru/lazarevskoe",
     type: "website",
+    images: [{ url: "https://framerusercontent.com/images/knZyYzLGIo9To06MDK80T4PMGA.jpg", width: 1200, height: 630, alt: "Лазаревское — курорт Черноморского побережья" }],
   },
 }
 
@@ -115,10 +116,10 @@ export default function LazarevskoePage() {
               уникальными достопримечательностями и развитой инфраструктурой для отдыха
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild size="lg" className="bg-terracotta hover:bg-terracotta-light text-white rounded-none px-8">
+              <Button asChild size="lg" className="bg-terracotta hover:bg-terracotta-light text-white px-8">
                 <Link href="/booking">Забронировать отель</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 rounded-none px-8">
+              <Button asChild size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 px-8">
                 <Link href="/lazarevskoe/dostoprimechatelnosti">Достопримечательности</Link>
               </Button>
             </div>
@@ -262,7 +263,7 @@ export default function LazarevskoePage() {
                     </li>
                   ))}
                 </ul>
-                <Button asChild size="lg" className="bg-terracotta hover:bg-terracotta-light text-white rounded-none px-8">
+                <Button asChild size="lg" className="bg-terracotta hover:bg-terracotta-light text-white px-8">
                   <Link href="/booking">Забронировать номер</Link>
                 </Button>
               </div>

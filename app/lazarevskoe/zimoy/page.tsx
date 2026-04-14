@@ -16,9 +16,10 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Лазаревское зимой — отдых в низкий сезон",
-    description: "Зимний отдых в Лазаревском: SPA, экскурсии, поездки в Красную Поляну.",
+    description: "Зимний отдых в Лазаревском: SPA, экскурсии, поездки в Красную Поляну. Погода, цены, преимущества отдыха зимой.",
     url: "https://priboy-spa.ru/lazarevskoe/zimoy",
     type: "website",
+    images: [{ url: "https://framerusercontent.com/images/knZyYzLGIo9To06MDK80T4PMGA.jpg", width: 1200, height: 630, alt: "Лазаревское зимой" }],
   },
 }
 
@@ -50,7 +51,7 @@ export default function WinterPage() {
             <p className="text-lg md:text-xl text-white/90 max-w-2xl mb-8 leading-relaxed">
               {winter.description}
             </p>
-            <Button asChild size="lg" className="bg-terracotta hover:bg-terracotta-light text-white rounded-none px-8">
+            <Button asChild size="lg" className="bg-terracotta hover:bg-terracotta-light text-white px-8">
               <Link href="/booking">Забронировать на зиму</Link>
             </Button>
           </div>
@@ -138,7 +139,7 @@ export default function WinterPage() {
               </div>
               <div className="relative h-80 lg:h-[500px]">
                 <Image
-                  src="/fasad.png"
+                  src="/zimnie-aktivnosti.png"
                   alt="Зимний отдых в Лазаревском"
                   fill
                   className="object-cover"
@@ -155,10 +156,10 @@ export default function WinterPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="relative h-80 lg:h-96 order-2 lg:order-1">
                 <Image
-                  src="/spa.jpg"
+                  src="/krasnaya-polyana.png"
                   alt="Красная Поляна"
                   fill
-                  className="object-cover"
+                  className="object-cover object-left-top"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>
@@ -218,7 +219,7 @@ export default function WinterPage() {
                     </li>
                   ))}
                 </ul>
-                <Button asChild className="bg-terracotta hover:bg-terracotta-light text-white rounded-none px-8">
+                <Button asChild className="bg-terracotta hover:bg-terracotta-light text-white px-8">
                   <Link href="/spa">Подробнее о SPA</Link>
                 </Button>
               </div>
@@ -265,10 +266,10 @@ export default function WinterPage() {
               Забронируйте номер и наслаждайтесь спокойным отдыхом у моря.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="bg-white text-terracotta hover:bg-white/90 rounded-none px-8">
+              <Button asChild size="lg" className="bg-white text-terracotta hover:bg-white/90 px-8">
                 <Link href="/booking">Забронировать</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 rounded-none px-8">
+              <Button asChild size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 px-8">
                 <Link href="/prices">Смотреть цены</Link>
               </Button>
             </div>
@@ -282,7 +283,7 @@ export default function WinterPage() {
             <p className="text-muted-foreground mb-6">
               Узнайте о преимуществах отдыха в Лазаревском в летний период
             </p>
-            <Button asChild variant="outline" className="border-terracotta text-terracotta hover:bg-terracotta/10 rounded-none px-8">
+            <Button asChild variant="outline" className="border-terracotta text-terracotta hover:bg-terracotta/10 px-8">
               <Link href="/lazarevskoe/letom">Лазаревское летом</Link>
             </Button>
           </div>

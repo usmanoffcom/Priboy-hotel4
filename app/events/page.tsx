@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "События и анонсы | Гранд Отель & SPA Прибой",
-    description: "События и мероприятия в отеле Прибой в Лазаревском. Тематические вечера, концерты, детские программы, семейные праздники. Организация корпоративных мероприятий и свадеб.",
+    description: "События и мероприятия в отеле Прибой в Лазаревском. Тематические вечера, концерты, детские программы. Корпоративы и свадьбы.",
     url: "https://priboy-spa.ru/events",
     images: [
       {
@@ -169,7 +169,7 @@ export default function EventsPage() {
             <p className="text-lg mb-8 text-white/90">
               Забронируйте номер и присоединяйтесь к нашим мероприятиям
             </p>
-            <Button asChild size="lg" className="bg-terracotta hover:bg-terracotta-light text-white rounded-none px-10 py-6 text-base font-medium">
+            <Button asChild size="lg" className="bg-terracotta hover:bg-terracotta-light text-white px-10 py-6 text-base font-medium">
               <Link href="/booking">Забронировать номер</Link>
             </Button>
           </div>

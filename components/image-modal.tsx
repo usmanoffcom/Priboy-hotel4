@@ -3,6 +3,7 @@
 import { createContext, useContext, useState, useCallback, useEffect, ReactNode } from "react"
 import Image from "next/image"
 import { X, ChevronLeft, ChevronRight } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 interface ImageModalContextType {
   openModal: (images: string[], index?: number) => void
@@ -134,6 +135,8 @@ interface ClickableImageProps {
   className?: string
   sizes?: string
   priority?: boolean
+  /** По умолчанию лёгкое затемнение при hover; для сеток превью с scale — false */
+  hoverOpacity?: boolean
 }
 
 export function ClickableImage({
@@ -145,6 +148,7 @@ export function ClickableImage({
   className = "object-cover",
   sizes,
   priority = false,
+  hoverOpacity = true,
 }: ClickableImageProps) {
   const { openModal } = useImageModal()
   
@@ -158,7 +162,11 @@ export function ClickableImage({
       src={src}
       alt={alt}
       fill={fill}
-      className={`${className} cursor-pointer hover:opacity-90 transition-opacity`}
+      className={cn(
+        className,
+        "cursor-pointer",
+        hoverOpacity && "hover:opacity-90 transition-opacity",
+      )}
       sizes={sizes}
       priority={priority}
       onClick={handleClick}

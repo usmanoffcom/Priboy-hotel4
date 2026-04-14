@@ -5,7 +5,7 @@ import type { Room } from "@/lib/rooms-data"
 
 export function RoomCard({ room }: { room: Room }) {
   return (
-    <div className="bg-white border border-border overflow-hidden group flex flex-col">
+    <div className="site-card overflow-hidden group flex flex-col">
       {/* Image */}
       <Link href={`/rooms/${room.slug}`} className="block relative aspect-[4/3] overflow-hidden">
         <img
@@ -13,7 +13,8 @@ export function RoomCard({ room }: { room: Room }) {
           alt={room.name}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
-        <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 text-xs font-medium">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="absolute top-3 right-3 bg-white/80 backdrop-blur-lg shadow-sm rounded-md px-2.5 py-1 text-xs font-medium">
           {room.size}
         </div>
       </Link>
@@ -45,7 +46,7 @@ export function RoomCard({ room }: { room: Room }) {
         </div>
 
         {/* Prices */}
-        <div className="flex gap-3 mb-4 p-3 bg-cream-dark mt-auto">
+        <div className="flex gap-3 mb-4 p-3 bg-cream-dark/60 rounded-lg mt-auto">
           <div className="flex-1">
             <p className="text-[10px] text-muted-foreground mb-0.5 uppercase tracking-wide">Завтраки</p>
             <p className="text-sm font-semibold text-terracotta">{room.priceBreakfast}</p>
@@ -60,16 +61,17 @@ export function RoomCard({ room }: { room: Room }) {
         <div className="flex gap-2">
           <Button
             asChild
-            variant="outline"
+            variant="brand-outline"
             size="sm"
-            className="flex-1 rounded-none text-xs border-foreground text-foreground hover:bg-foreground hover:text-white bg-transparent"
+            className="flex-1 text-xs bg-transparent"
           >
             <Link href={`/rooms/${room.slug}`}>Подробнее</Link>
           </Button>
           <Button
             asChild
             size="sm"
-            className="flex-1 bg-terracotta hover:bg-terracotta-light text-white rounded-none text-xs"
+            variant="brand"
+            className="flex-1 text-xs"
           >
             <Link href="/booking">Забронировать</Link>
           </Button>

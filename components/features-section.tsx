@@ -1,5 +1,9 @@
 import Image from "next/image"
 import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Section } from "@/components/ui/section"
+import { SectionHeader } from "@/components/ui/section-header"
+import { SiteCard } from "@/components/ui/site-card"
 
 const features = [
   {
@@ -44,50 +48,49 @@ const features = [
     description: "Бесплатный трансфер на центральный пляж по расписанию — быстро доберётесь до моря и вернётесь в отель.",
     href: "/uslugi/transfer-na-plyazh",
   },
+  {
+    image: "/animations/telegram-cloud-photo-size-2-5409057872894693404-y.jpg",
+    title: "Детская анимация",
+    description: "Профессиональные аниматоры, ежедневные программы, мастер-классы и игры для детей. Яркий отдых для маленьких гостей в летний сезон.",
+    href: "/uslugi/detskaya-animatsiya",
+  },
 ]
 
 export function FeaturesSection() {
   return (
-    <section className="py-20 sm:py-24 bg-cream">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 sm:mb-16">
-          <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-terracotta mb-4 font-medium">Удобства</p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground leading-tight">Всё для вашего комфорта</h2>
-        </div>
+    <Section muted className="py-20 sm:py-24">
+      <SectionHeader eyebrow="Удобства" title="Всё для вашего комфорта" centered className="mb-12 sm:mb-16" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {features.map((feature, index) => (
-            <Link
-              key={index}
-              href={feature.href}
-              className="bg-white border border-border hover:shadow-xl hover:border-terracotta transition-all duration-300 overflow-hidden group block"
-            >
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        {features.map((feature, index) => (
+          <SiteCard key={index} className="group overflow-hidden">
+            <Link href={feature.href} className="block">
               <div className="relative w-full h-48 sm:h-56 overflow-hidden">
                 <Image
                   src={feature.image}
                   alt={feature.title}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
               <div className="p-6 sm:p-8">
-                <h3 className="text-lg sm:text-xl font-bold mb-3 text-foreground group-hover:text-terracotta transition-colors">{feature.title}</h3>
+                <h3 className="text-lg sm:text-xl font-bold mb-3 text-foreground group-hover:text-terracotta transition-colors duration-300">{feature.title}</h3>
                 <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">{feature.description}</p>
               </div>
             </Link>
-          ))}
-        </div>
+          </SiteCard>
+        ))}
+      </div>
 
-        <div className="text-center mt-12">
-          <Link
-            href="/uslugi"
-            className="inline-flex items-center justify-center px-8 py-4 bg-terracotta hover:bg-terracotta-light text-white font-medium rounded-none transition-colors"
-          >
+      <div className="text-center mt-12">
+        <Button asChild variant="brand" className="px-8 py-6 text-base">
+          <Link href="/uslugi">
             Все услуги отеля
           </Link>
-        </div>
+        </Button>
       </div>
-    </section>
+    </Section>
   )
 }

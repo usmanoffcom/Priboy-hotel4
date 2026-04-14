@@ -156,7 +156,7 @@ export default async function AttractionPage({ params }: { params: Promise<{ slu
                     <p className="text-sm text-muted-foreground mb-6">
                       Гранд Отель & SPA Прибой — идеальная база для посещения достопримечательностей Лазаревского
                     </p>
-                    <Button asChild className="w-full bg-terracotta hover:bg-terracotta-light text-white rounded-none">
+                    <Button asChild className="w-full bg-terracotta hover:bg-terracotta-light text-white">
                       <Link href="/booking">Забронировать номер</Link>
                     </Button>
                   </div>
@@ -169,7 +169,7 @@ export default async function AttractionPage({ params }: { params: Promise<{ slu
                     <p className="text-sm text-white/80 mb-4">
                       Мы поможем организовать посещение и трансфер
                     </p>
-                    <Button asChild variant="outline" className="w-full bg-transparent border-white text-white hover:bg-white/10 rounded-none">
+                    <Button asChild variant="outline" className="w-full bg-transparent border-white text-white hover:bg-white/10">
                       <a href="tel:+79883443333">+7 (988) 344-33-33</a>
                     </Button>
                   </div>
@@ -213,7 +213,7 @@ export default async function AttractionPage({ params }: { params: Promise<{ slu
               ))}
             </div>
             <div className="text-center mt-8">
-              <Button asChild variant="outline" className="border-terracotta text-terracotta hover:bg-terracotta/10 rounded-none px-8">
+              <Button asChild variant="outline" className="border-terracotta text-terracotta hover:bg-terracotta/10 px-8">
                 <Link href="/lazarevskoe/dostoprimechatelnosti">Все достопримечательности</Link>
               </Button>
             </div>

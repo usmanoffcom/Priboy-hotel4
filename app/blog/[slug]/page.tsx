@@ -7,6 +7,10 @@ import Link from "next/link"
 import Image from "next/image"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
+import { PageHero } from "@/components/ui/page-hero"
+import { Section } from "@/components/ui/section"
+import { SectionHeader } from "@/components/ui/section-header"
+import { TextLink } from "@/components/ui/text-link"
 
 export function generateStaticParams() {
   return blogPosts.map((post) => ({
@@ -79,18 +83,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     <>
       <Header />
       <main>
-        {/* Hero */}
-        <section
-          className="relative min-h-[50vh] flex items-center justify-center bg-cover bg-center"
-          style={{
-            backgroundImage: `url('${post.image}')`,
-          }}
-          aria-label={`Изображение для статьи: ${post.title}`}
-        >
-          <div className="absolute inset-0 bg-foreground/60" />
-          <div className="relative z-10 text-center text-white px-4 max-w-4xl">
-            <span className="inline-block bg-terracotta text-white text-sm px-4 py-1 mb-4">{post.category}</span>
-            <h1 className="text-3xl md:text-5xl font-light mb-4">{post.title}</h1>
+        <PageHero
+          eyebrow={post.category}
+          title={post.title}
+          description={post.excerpt}
+          className="min-h-[50vh] flex items-center justify-center bg-cover bg-center"
+          backgroundImage={post.image}
+        />
+        <section className="py-2 bg-foreground">
+          <div className="site-container">
             <div className="flex items-center justify-center gap-6 text-sm text-white/80">
               <span className="flex items-center gap-2">
                 <Calendar className="h-4 w-4" />
@@ -106,20 +107,17 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
         {/* Breadcrumb */}
         <section className="py-4 bg-cream border-b border-border">
-          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-terracotta transition-colors"
-            >
+          <div className="site-container max-w-4xl flex justify-between items-center">
+            <TextLink href="/blog" className="text-sm text-muted-foreground">
               <ArrowLeft className="h-4 w-4" />
               Посмотреть все статьи
-            </Link>
+            </TextLink>
           </div>
         </section>
 
         {/* Content */}
-        <section className="py-12 bg-white">
-          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <Section className="py-12 bg-white">
+          <div className="max-w-4xl mx-auto">
             <article className="prose prose-lg max-w-none">
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">{post.excerpt}</p>
               {post.content ? (
@@ -143,29 +141,28 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               )}
             </article>
           </div>
-        </section>
+        </Section>
 
         {/* CTA */}
         <section className="py-12 bg-cream-dark">
           <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
             <h3 className="text-2xl font-light text-foreground mb-4">Готовы к отдыху?</h3>
             <p className="text-muted-foreground mb-6">Забронируйте номер в Гранд Отель & SPA Прибой</p>
-            <Button asChild className="bg-terracotta hover:bg-terracotta-light text-white rounded-none px-8">
+            <Button asChild variant="brand" className="px-8">
               <Link href="/booking">Забронировать</Link>
             </Button>
           </div>
         </section>
 
         {/* Related Posts */}
-        <section className="py-12 bg-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-light text-foreground mb-8 text-center">Другие статьи</h2>
+        <Section className="py-12 bg-white">
+          <SectionHeader title="Другие статьи" centered className="mb-8" />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {otherPosts.map((relatedPost) => (
                 <Link
                   key={relatedPost.slug}
                   href={`/blog/${relatedPost.slug}`}
-                  className="group block bg-cream border border-border overflow-hidden hover:shadow-md transition-shadow"
+                  className="group block site-card bg-cream overflow-hidden"
                 >
                   <div className="relative h-40 overflow-hidden">
                     <Image
@@ -188,8 +185,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 </Link>
               ))}
             </div>
-          </div>
-        </section>
+        </Section>
       </main>
       <Footer />
     </>

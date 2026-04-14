@@ -1,6 +1,8 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import type { Metadata } from "next"
+import { PageHero } from "@/components/ui/page-hero"
+import { Section } from "@/components/ui/section"
 
 export const metadata: Metadata = {
   title: "Правила проживания | Гранд Отель & SPA Прибой — Лазаревское",
@@ -29,22 +31,15 @@ export default function RulesPage() {
     <>
       <Header />
       <main>
-        {/* Hero Section */}
-        <section className="relative pt-28 sm:pt-32 pb-12 sm:pb-16 bg-foreground">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-            <p className="text-sm tracking-[0.2em] uppercase text-gold mb-4">Информация</p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6">
-              ПРАВИЛА ПРОЖИВАНИЯ В GRAND HOTEL И SPA ПРИБОЙ
-            </h1>
-            <p className="text-lg text-white/80 max-w-3xl mx-auto">
-              Правила проживания, правила посещения бассейна, аквапарка, SPA комплекса
-            </p>
-          </div>
-        </section>
+        <PageHero
+          eyebrow="Информация"
+          title="ПРАВИЛА ПРОЖИВАНИЯ В GRAND HOTEL И SPA ПРИБОЙ"
+          description="Правила проживания, правила посещения бассейна, аквапарка, SPA комплекса"
+        />
 
         {/* Main Content */}
-        <section className="py-16 sm:py-20 bg-white">
-          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <Section className="py-16 sm:py-20 bg-white">
+          <div className="max-w-4xl mx-auto">
             <div className="prose prose-lg max-w-none">
               <h2 className="text-3xl font-bold text-foreground mb-8">Правила проживания</h2>
 
@@ -141,7 +136,7 @@ export default function RulesPage() {
               </div>
             </div>
           </div>
-        </section>
+        </Section>
       </main>
       <Footer />
     </>

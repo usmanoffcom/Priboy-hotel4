@@ -1,7 +1,10 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { Building2, CreditCard, FileText } from "lucide-react"
+import { HotelDocumentsDownload } from "@/components/hotel-documents-download"
+import { Building2, CreditCard, FileText, ExternalLink } from "lucide-react"
 import type { Metadata } from "next"
+import Link from "next/link"
+import { HOTEL_REGISTRY } from "@/lib/hotel-registry"
 
 export const metadata: Metadata = {
   title: "Реквизиты | Гранд Отель & SPA Прибой — Лазаревское",
@@ -93,6 +96,37 @@ export default function RequisitesPage() {
                       <p><strong className="text-foreground">Рег. № ФСС:</strong> 2316527082 Филиал 16 ГУ – Краснодарского регионального отделения ФСС РФ</p>
                       <p><strong className="text-foreground">Рег. № ПФР:</strong> 033-022-016113 УФК по Краснодарскому краю (ГУ — Отделение Пенсионного фонда Российской Федерации по Краснодарскому краю)</p>
                     </div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="dokumenty" className="bg-white p-6 sm:p-8 border border-border scroll-mt-28">
+                <div className="flex items-start gap-4 mb-6">
+                  <FileText className="h-6 w-6 text-terracotta flex-shrink-0 mt-1" />
+                  <div className="w-full">
+                    <h2 className="text-2xl font-bold text-foreground mb-4">
+                      Классификация и документы для скачивания
+                    </h2>
+                    <p className="text-base text-muted-foreground mb-4">
+                      {HOTEL_REGISTRY.objectFullName} — категория {HOTEL_REGISTRY.categoryLabel} (★★★).
+                      Рег. № свидетельства {HOTEL_REGISTRY.certificateRegNumber}, действует до{" "}
+                      {HOTEL_REGISTRY.certificateValidUntil}.{" "}
+                      <a
+                        href={HOTEL_REGISTRY.fsaCardUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-terracotta font-medium hover:underline inline-flex items-center gap-1"
+                      >
+                        Карточка в ЕФИС
+                        <ExternalLink className="h-3.5 w-3.5" aria-hidden />
+                      </a>
+                      . Подробнее — на странице{" "}
+                      <Link href="/o-komplekse#dokumenty" className="text-terracotta font-medium hover:underline">
+                        О комплексе
+                      </Link>
+                      .
+                    </p>
+                    <HotelDocumentsDownload variant="muted" />
                   </div>
                 </div>
               </div>

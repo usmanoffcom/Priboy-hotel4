@@ -16,7 +16,7 @@ export function ServiceGallery({ gallery, serviceName }: ServiceGalleryProps) {
       <h3 className="text-xl font-medium text-foreground mb-4">Фото и видео</h3>
       <div className="grid grid-cols-2 gap-4 mb-8">
         {gallery.map((item, index) => (
-          <div key={index} className="relative overflow-hidden aspect-[4/3]">
+          <div key={index} className="preview-grid-card aspect-[4/3]">
             {item.endsWith('.mp4') ? (
               <video
                 autoPlay

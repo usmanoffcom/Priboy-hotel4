@@ -96,7 +96,7 @@ export default function CancellationPage() {
             </div>
 
             <div className="mt-12 text-center">
-              <Button asChild className="bg-terracotta hover:bg-terracotta-light text-white rounded-none px-8 py-6 text-base font-medium">
+              <Button asChild className="bg-terracotta hover:bg-terracotta-light text-white px-8 py-6 text-base font-medium">
                 <Link href="/booking">Забронировать номер</Link>
               </Button>
             </div>

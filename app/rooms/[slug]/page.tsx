@@ -24,6 +24,8 @@ import {
   ChevronRight,
 } from "lucide-react"
 import { RoomGallery } from "@/components/room-gallery"
+import { Section } from "@/components/ui/section"
+import { TextLink } from "@/components/ui/text-link"
 
 export function generateStaticParams() {
   return rooms.map((room) => ({
@@ -62,6 +64,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
           alt: room.name,
         },
       ] : undefined,
+      type: "website",
     },
   }
 }
@@ -93,19 +96,23 @@ export default async function RoomPage({ params }: { params: Promise<{ slug: str
       <Header />
       <main>
         {/* Room Header with Breadcrumb and Gallery */}
-        <section className="pt-28 sm:pt-32 pb-6 bg-cream">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <Section muted className="pb-6" containerClassName="pt-6">
             {/* Breadcrumb */}
-            <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-              <Link href="/" className="hover:text-foreground transition-colors">
+            <nav
+              className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs sm:text-sm text-muted-foreground mb-2 min-w-0"
+              aria-label="Хлебные крошки"
+            >
+              <TextLink href="/" className="text-muted-foreground hover:text-foreground shrink-0">
                 Главная
-              </Link>
-              <span>/</span>
-              <Link href="/rooms" className="hover:text-foreground transition-colors">
+              </TextLink>
+              <span className="shrink-0" aria-hidden>/</span>
+              <TextLink href="/rooms" className="text-muted-foreground hover:text-foreground shrink-0">
                 Номера
-              </Link>
-              <span>/</span>
-              <span className="text-foreground">{room.name}</span>
+              </TextLink>
+              <span className="shrink-0" aria-hidden>/</span>
+              <span className="text-foreground min-w-0 truncate max-w-full" title={room.name}>
+                {room.name}
+              </span>
             </nav>
             
             {/* Title and Info */}
@@ -129,8 +136,7 @@ export default async function RoomPage({ params }: { params: Promise<{ slug: str
 
             {/* Gallery */}
             <RoomGallery images={room.images} name={room.name} />
-          </div>
-        </section>
+        </Section>
 
         {/* Content */}
         <section className="py-12 bg-white">
@@ -255,7 +261,8 @@ export default async function RoomPage({ params }: { params: Promise<{ slug: str
                   <Button
                     asChild
                     size="lg"
-                    className="w-full bg-gold hover:bg-gold/90 text-foreground rounded-none mb-4"
+                    variant="default"
+                    className="w-full mb-4 bg-gold hover:bg-gold/90 text-foreground"
                   >
                     <Link href="/booking">Забронировать онлайн</Link>
                   </Button>
@@ -263,17 +270,17 @@ export default async function RoomPage({ params }: { params: Promise<{ slug: str
                   <div className="flex gap-2">
                     <Button
                       asChild
-                      variant="outline"
+                      variant="inverse"
                       size="sm"
-                      className="flex-1 border-white/30 text-white hover:bg-white/10 rounded-none bg-transparent text-xs"
+                      className="flex-1 bg-transparent text-xs"
                     >
                       <Link href="/prices">Сезонные цены</Link>
                     </Button>
                     <Button
                       asChild
-                      variant="outline"
+                      variant="inverse"
                       size="sm"
-                      className="flex-1 border-white/30 text-white hover:bg-white/10 rounded-none bg-transparent text-xs"
+                      className="flex-1 bg-transparent text-xs"
                     >
                       <Link href="/contacts">Связаться</Link>
                     </Button>
@@ -309,7 +316,7 @@ export default async function RoomPage({ params }: { params: Promise<{ slug: str
                 <div />
               )}
 
-              <Button asChild variant="outline" className="rounded-none bg-transparent">
+              <Button asChild variant="brand-outline" className="bg-transparent">
                 <Link href="/rooms">Все номера</Link>
               </Button>
 

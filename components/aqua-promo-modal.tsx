@@ -95,7 +95,7 @@ export function AquaPromoModal() {
             <div className="flex flex-col sm:flex-row gap-3">
               <Button
                 asChild
-                className="flex-1 bg-terracotta hover:bg-terracotta-light text-white rounded-none h-12 sm:h-14 text-sm sm:text-base font-medium"
+                className="flex-1 bg-terracotta hover:bg-terracotta-light text-white h-12 sm:h-14 text-sm sm:text-base font-medium"
               >
                 <Link href="/booking">
                   Забронировать номер
@@ -104,7 +104,7 @@ export function AquaPromoModal() {
               <Button
                 asChild
                 variant="outline"
-                className="flex-1 border-white text-white hover:bg-white hover:text-foreground rounded-none h-12 sm:h-14 text-sm sm:text-base font-medium bg-white/10"
+                className="flex-1 border-white text-white hover:bg-white hover:text-foreground h-12 sm:h-14 text-sm sm:text-base font-medium bg-white/10"
               >
                 <a href="tel:+79883443333">
                   Позвонить

@@ -16,9 +16,10 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Лазаревское летом — отдых в высокий сезон",
-    description: "Летний отдых в Лазаревском: пляжи, аквапарки, экскурсии, морские прогулки.",
+    description: "Летний отдых в Лазаревском: пляжи, аквапарки, экскурсии, морские прогулки. Погода, температура воды, развлечения.",
     url: "https://priboy-spa.ru/lazarevskoe/letom",
     type: "website",
+    images: [{ url: "https://framerusercontent.com/images/knZyYzLGIo9To06MDK80T4PMGA.jpg", width: 1200, height: 630, alt: "Лазаревское летом" }],
   },
 }
 
@@ -50,7 +51,7 @@ export default function SummerPage() {
             <p className="text-lg md:text-xl text-white/90 max-w-2xl mb-8 leading-relaxed">
               {summer.description}
             </p>
-            <Button asChild size="lg" className="bg-terracotta hover:bg-terracotta-light text-white rounded-none px-8">
+            <Button asChild size="lg" className="bg-terracotta hover:bg-terracotta-light text-white px-8">
               <Link href="/booking">Забронировать на лето</Link>
             </Button>
           </div>
@@ -234,10 +235,10 @@ export default function SummerPage() {
                   ))}
                 </ul>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button asChild size="lg" className="bg-terracotta hover:bg-terracotta-light text-white rounded-none px-8">
+                  <Button asChild size="lg" className="bg-terracotta hover:bg-terracotta-light text-white px-8">
                     <Link href="/booking">Забронировать</Link>
                   </Button>
-                  <Button asChild size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 rounded-none px-8">
+                  <Button asChild size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 px-8">
                     <Link href="/rooms">Смотреть номера</Link>
                   </Button>
                 </div>
@@ -253,7 +254,7 @@ export default function SummerPage() {
             <p className="text-muted-foreground mb-6">
               Узнайте о преимуществах отдыха в Лазаревском в зимний период
             </p>
-            <Button asChild variant="outline" className="border-terracotta text-terracotta hover:bg-terracotta/10 rounded-none px-8">
+            <Button asChild variant="outline" className="border-terracotta text-terracotta hover:bg-terracotta/10 px-8">
               <Link href="/lazarevskoe/zimoy">Лазаревское зимой</Link>
             </Button>
           </div>

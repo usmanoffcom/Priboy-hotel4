@@ -5,6 +5,16 @@ import Link from "next/link"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Check, Info } from "lucide-react"
 import type { Metadata } from "next"
+import { PageHero } from "@/components/ui/page-hero"
+import { Section } from "@/components/ui/section"
+import { SectionHeader } from "@/components/ui/section-header"
+import {
+  extraBreakfast,
+  extraPansion,
+  pansionIncludes,
+  pricesBreakfast,
+  pricesPansion,
+} from "@/lib/prices-data"
 
 export const metadata: Metadata = {
   title: "Цены на номера | Гранд Отель & SPA Прибой — Лазаревское",
@@ -28,47 +38,6 @@ export const metadata: Metadata = {
   },
 }
 
-const pricesBreakfast = [
-  { period: "9.01 – 30.04.2026", standard: 6400, deluxe: 7250, luxe: 8900 },
-  { period: "1.05 – 31.05.2026", standard: 7700, deluxe: 8700, luxe: 10400 },
-  { period: "1.06 – 10.06.2026", standard: 7700, deluxe: 8700, luxe: 10400 },
-  { period: "11.06 – 30.06.2026", standard: 9500, deluxe: 11500, luxe: 14500 },
-  { period: "1.07 – 31.07.2026", standard: 11500, deluxe: 13500, luxe: 16000 },
-  { period: "1.08 – 31.08.2026", standard: 13500, deluxe: 16500, luxe: 20000 },
-  { period: "1.09 – 20.09.2026", standard: 9800, deluxe: 11800, luxe: 15000 },
-  { period: "21.09 – 30.09.2026", standard: 8000, deluxe: 9000, luxe: 12500 },
-]
-
-const pricesPansion = [
-  { period: "1.06 – 10.06.2026", standard: 11700, deluxe: 12700, luxe: 14400 },
-  { period: "11.06 – 30.06.2026", standard: 13500, deluxe: 15500, luxe: 18500 },
-  { period: "1.07 – 31.07.2026", standard: 15500, deluxe: 17500, luxe: 20000 },
-  { period: "1.08 – 31.08.2026", standard: 17500, deluxe: 20500, luxe: 24000 },
-  { period: "1.09 – 20.09.2026", standard: 13800, deluxe: 15800, luxe: 19000 },
-]
-
-const extraBreakfast = [
-  { age: "От 7 лет", price: "2 500 ₽" },
-  { age: "4–6 лет", price: "1 800 ₽" },
-  { age: "До 3 лет", price: "Бесплатно" },
-]
-
-const extraPansion = [
-  { age: "От 7 лет", price: "3 800 ₽" },
-  { age: "4–6 лет", price: "2 500 ₽" },
-  { age: "До 3 лет", price: "Бесплатно" },
-]
-
-const pansionIncludes = [
-  "Завтраки, обеды, ужины (шведский стол)",
-  "Пользование бассейном",
-  "Мини-аквапарк",
-  "Лежаки на набережной",
-  "Трансфер до набережной",
-  "Посещение SPA-комплекса",
-  "Бесплатная парковка",
-]
-
 function formatPrice(price: number) {
   return price.toLocaleString("ru-RU") + " ₽"
 }
@@ -78,16 +47,11 @@ export default function PricesPage() {
     <>
       <Header />
       <main>
-        {/* Hero */}
-        <section className="relative pt-28 sm:pt-32 pb-12 sm:pb-16 bg-foreground">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-            <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-gold mb-3">Тарифы 2026</p>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-4">Цены на проживание</h1>
-            <p className="text-base sm:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed">
-              Актуальные цены на 2026 год. Стоимость указана за номер в сутки для двух взрослых.
-            </p>
-          </div>
-        </section>
+        <PageHero
+          eyebrow="Тарифы 2026"
+          title="Цены на проживание"
+          description="Актуальные цены на 2026 год. Стоимость указана за номер в сутки для двух взрослых."
+        />
 
         {/* Tax Notice */}
         <section className="py-4 bg-amber-50 border-b border-amber-200">
@@ -104,8 +68,7 @@ export default function PricesPage() {
         </section>
 
         {/* Prices Tables */}
-        <section className="py-16 bg-cream">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <Section muted className="py-16">
             <Tabs defaultValue="breakfast" className="w-full">
               <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-12 rounded-none h-auto">
                 <TabsTrigger
@@ -229,13 +192,11 @@ export default function PricesPage() {
                 </div>
               </TabsContent>
             </Tabs>
-          </div>
-        </section>
+        </Section>
 
         {/* Room Categories */}
-        <section className="py-16 bg-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-light text-foreground mb-10 text-center">Категории номеров</h2>
+        <Section className="py-16 bg-white">
+          <SectionHeader title="Категории номеров" centered className="mb-10" />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="text-center">
                 <div className="aspect-[4/3] mb-4 overflow-hidden">
@@ -274,15 +235,14 @@ export default function PricesPage() {
                 <p className="text-sm text-muted-foreground">2 комнаты: кровать + диван + кресло-кровать</p>
               </div>
             </div>
-          </div>
-        </section>
+        </Section>
 
         {/* CTA */}
         <section className="py-16 bg-foreground text-center">
           <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-light text-white mb-6">Готовы забронировать?</h2>
             <p className="text-white/80 mb-8 leading-relaxed">Забронируйте номер онлайн с гарантией лучшей цены</p>
-            <Button asChild size="lg" className="bg-terracotta hover:bg-terracotta-light text-white rounded-none px-10">
+            <Button asChild size="xl" variant="brand" className="px-10">
               <Link href="/booking">Забронировать номер</Link>
             </Button>
           </div>

@@ -32,6 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
           alt: service.name,
         },
       ] : undefined,
+      type: "website",
     },
   }
 }

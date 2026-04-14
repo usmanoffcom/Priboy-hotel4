@@ -6,6 +6,10 @@ import Link from "next/link"
 import { Calendar, ArrowLeft } from "lucide-react"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
+import { PageHero } from "@/components/ui/page-hero"
+import { Section } from "@/components/ui/section"
+import { SectionHeader } from "@/components/ui/section-header"
+import { TextLink } from "@/components/ui/text-link"
 
 interface NewsPageProps {
   params: Promise<{
@@ -67,49 +71,43 @@ export default async function NewsPostPage({ params }: NewsPageProps) {
     <>
       <Header />
       <main>
-        {/* Hero */}
-        <section className="relative pt-28 sm:pt-32 pb-12 sm:pb-16 bg-foreground">
-          <div className="absolute inset-0 bg-foreground/60" />
-          <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <Link
-              href="/news"
-              className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-6 transition-colors"
-            >
+        <PageHero
+          title={post.title}
+          description={post.excerpt}
+          className="bg-cover bg-center"
+          backgroundImage={post.image}
+        />
+        <section className="py-4 bg-foreground">
+          <div className="site-container">
+            <TextLink href="/news" className="inline-flex text-white/80 hover:text-white">
               <ArrowLeft className="h-4 w-4" />
               <span>Вернуться к новостям</span>
-            </Link>
-            <div className="text-center max-w-3xl mx-auto">
-              <div className="flex items-center justify-center gap-2 text-sm text-white/60 mb-4">
-                <Calendar className="h-4 w-4" />
-                <time dateTime={post.date}>{post.date}</time>
-              </div>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-4">
-                {post.title}
-              </h1>
-              {post.excerpt && (
-                <p className="text-base sm:text-lg text-white/80 leading-relaxed">
-                  {post.excerpt}
-                </p>
-              )}
+            </TextLink>
+          </div>
+        </section>
+        <section className="py-2 bg-foreground">
+          <div className="site-container">
+            <div className="flex items-center justify-center gap-2 text-sm text-white/70">
+              <Calendar className="h-4 w-4" />
+              <time dateTime={post.date}>{post.date}</time>
             </div>
           </div>
         </section>
 
         {/* Content */}
-        <article className="py-16 bg-cream">
-          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <Section muted className="py-16">
+          <div className="max-w-4xl mx-auto">
             <div
               className="prose prose-lg max-w-none prose-headings:text-foreground prose-p:text-muted-foreground prose-a:text-terracotta prose-a:no-underline hover:prose-a:underline prose-strong:text-foreground prose-ul:text-muted-foreground prose-ol:text-muted-foreground prose-video:w-full prose-video:rounded-sm prose-iframe:w-full prose-iframe:rounded-sm prose-iframe:my-8"
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
           </div>
-        </article>
+        </Section>
 
         {/* Recent News */}
         {recentNews.length > 0 && (
-          <section className="py-16 bg-white">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <h2 className="text-3xl font-light text-foreground mb-8">Другие новости</h2>
+          <Section className="py-16 bg-white">
+            <SectionHeader title="Другие новости" className="mb-8" />
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {recentNews
                   .filter((item) => item.slug !== post.slug)
@@ -118,7 +116,7 @@ export default async function NewsPostPage({ params }: NewsPageProps) {
                     <Link
                       key={item.id}
                       href={`/news/${item.slug}`}
-                      className="bg-cream border border-border hover:shadow-xl transition-all duration-300 overflow-hidden group"
+                      className="site-card bg-cream overflow-hidden group"
                     >
                       {item.image && (
                         <div className="relative w-full h-48 overflow-hidden">
@@ -146,8 +144,7 @@ export default async function NewsPostPage({ params }: NewsPageProps) {
                     </Link>
                   ))}
               </div>
-            </div>
-          </section>
+          </Section>
         )}
       </main>
       <Footer />

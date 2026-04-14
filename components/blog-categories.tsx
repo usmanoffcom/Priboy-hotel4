@@ -56,11 +56,10 @@ export function BlogCategories({ categories, selectedCategory, onCategoryChange 
         ref={scrollRef}
         onScroll={checkScroll}
         className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth px-1 py-1"
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         <button
           onClick={() => onCategoryChange(null)}
-          className={`flex-shrink-0 px-4 py-2 text-sm rounded-none transition-colors whitespace-nowrap ${
+          className={`flex-shrink-0 px-4 py-2 text-sm transition-colors whitespace-nowrap ${
             selectedCategory === null
               ? "bg-terracotta text-white"
               : "border border-border text-foreground hover:bg-cream"
@@ -72,7 +71,7 @@ export function BlogCategories({ categories, selectedCategory, onCategoryChange 
           <button
             key={category}
             onClick={() => onCategoryChange(category)}
-            className={`flex-shrink-0 px-4 py-2 text-sm rounded-none transition-colors whitespace-nowrap ${
+            className={`flex-shrink-0 px-4 py-2 text-sm transition-colors whitespace-nowrap ${
               selectedCategory === category
                 ? "bg-terracotta text-white"
                 : "border border-border text-foreground hover:bg-cream"

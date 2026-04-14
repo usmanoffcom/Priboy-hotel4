@@ -26,6 +26,9 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
+  async rewrites() {
+    return [{ source: '/feeds/rooms.yml', destination: '/feeds/rooms' }]
+  },
   // Заголовки кеширования + CORS для CDN (шрифты/статику запрашивает браузер с priboy-spa.ru с selcdn.net)
   async headers() {
     const oneYear = 'public, max-age=31536000, immutable'

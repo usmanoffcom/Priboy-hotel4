@@ -7,6 +7,9 @@ import Image from "next/image"
 import type { Metadata } from "next"
 import { services } from "@/lib/services-data"
 import { spaServices } from "@/lib/spa-data"
+import { PageHero } from "@/components/ui/page-hero"
+import { Section } from "@/components/ui/section"
+import { SectionHeader } from "@/components/ui/section-header"
 
 export const metadata: Metadata = {
   title: "Услуги отеля — Гранд Отель & SPA Прибой в Лазаревском",
@@ -17,9 +20,10 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Услуги отеля — Гранд Отель & SPA Прибой",
-    description: "Услуги Гранд Отель & SPA Прибой: SPA-комплекс, бассейн, ресторан, трансфер, детская анимация.",
+    description: "Услуги Гранд Отель & SPA Прибой: SPA-комплекс, бассейн, ресторан, трансфер до пляжа, детская анимация, банкеты. Лазаревское.",
     url: "https://priboy-spa.ru/uslugi",
     type: "website",
+    images: [{ url: "https://framerusercontent.com/images/knZyYzLGIo9To06MDK80T4PMGA.jpg", width: 1200, height: 630, alt: "Услуги отеля Прибой — Лазаревское" }],
   },
 }
 
@@ -53,26 +57,15 @@ export default function ServicesPage() {
     <>
       <Header />
       <main>
-        {/* Hero Section */}
-        <section className="relative pt-28 sm:pt-32 pb-12 sm:pb-16 bg-foreground">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-            <p className="text-sm tracking-[0.2em] uppercase text-gold mb-4">Гранд Отель & SPA Прибой</p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6">
-              Услуги отеля
-            </h1>
-            <p className="text-lg text-white/80 max-w-3xl mx-auto">
-              Всё для комфортного отдыха: SPA-комплекс, бассейн, ресторан, 
-              детская анимация и многое другое
-            </p>
-          </div>
-        </section>
+        <PageHero
+          eyebrow="Гранд Отель & SPA Прибой"
+          title="Услуги отеля"
+          description="Всё для комфортного отдыха: SPA-комплекс, бассейн, ресторан, детская анимация и многое другое"
+        />
 
         {/* Main Categories */}
-        <section className="py-16 md:py-20 bg-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-light text-foreground">Основные услуги</h2>
-            </div>
+        <Section className="py-16 md:py-20 bg-white">
+          <SectionHeader title="Основные услуги" centered className="mb-12" />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {mainCategories.map((category, index) => (
                 <Link
@@ -108,16 +101,16 @@ export default function ServicesPage() {
                 </Link>
               ))}
             </div>
-          </div>
-        </section>
+        </Section>
 
         {/* Services Grid */}
-        <section className="py-16 md:py-20 bg-cream">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4">Дополнительные услуги</h2>
-              <p className="text-muted-foreground">Всё, что сделает ваш отдых ещё комфортнее</p>
-            </div>
+        <Section muted className="py-16 md:py-20">
+          <SectionHeader
+            title="Дополнительные услуги"
+            description="Всё, что сделает ваш отдых ещё комфортнее"
+            centered
+            className="mb-12"
+          />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {services.map((service) => {
                 const IconComponent = serviceIcons[service.slug] || Waves
@@ -154,19 +147,17 @@ export default function ServicesPage() {
                 )
               })}
             </div>
-          </div>
-        </section>
+        </Section>
 
         {/* SPA Services */}
-        <section className="py-16 md:py-20 bg-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <p className="text-sm tracking-[0.2em] uppercase text-terracotta mb-4">Оздоровление</p>
-              <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4">SPA-комплекс</h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Разнообразные бани и сауны для полноценного отдыха и оздоровления
-              </p>
-            </div>
+        <Section className="py-16 md:py-20 bg-white">
+          <SectionHeader
+            eyebrow="Оздоровление"
+            title="SPA-комплекс"
+            description="Разнообразные бани и сауны для полноценного отдыха и оздоровления"
+            centered
+            className="mb-12"
+          />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {spaServices.map((spa) => (
                 <Link
@@ -196,12 +187,11 @@ export default function ServicesPage() {
               ))}
             </div>
             <div className="text-center mt-8">
-              <Button asChild className="bg-terracotta hover:bg-terracotta-light text-white rounded-none px-8">
+              <Button asChild variant="brand" className="px-8">
                 <Link href="/spa">Все SPA-услуги</Link>
               </Button>
             </div>
-          </div>
-        </section>
+        </Section>
 
         {/* CTA */}
         <section className="py-16 bg-foreground">
@@ -214,10 +204,10 @@ export default function ServicesPage() {
               SPA-комплекс и дополнительные услуги оплачиваются отдельно.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="bg-terracotta hover:bg-terracotta-light text-white rounded-none px-8">
+              <Button asChild size="xl" variant="brand" className="px-8">
                 <Link href="/booking">Забронировать номер</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 rounded-none px-8">
+              <Button asChild size="xl" variant="inverse" className="px-8 bg-transparent">
                 <Link href="/prices">Смотреть цены</Link>
               </Button>
             </div>

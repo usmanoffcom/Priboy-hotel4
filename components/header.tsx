@@ -6,6 +6,7 @@ import { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
 import { Menu, X, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { TextLink } from "@/components/ui/text-link"
 
 const navigation = [
   { name: "Номера", href: "/rooms" },
@@ -36,7 +37,9 @@ export function Header() {
 
   // На страницах номеров всегда используем светлую тему хедера
   const shouldUseLightTheme = isRoomPage || isScrolled
-  const headerBg = shouldUseLightTheme ? "bg-cream shadow-md" : "bg-transparent"
+  const headerBg = shouldUseLightTheme
+    ? "bg-cream/80 backdrop-blur-xl shadow-lg border-b border-white/30"
+    : "bg-white/5 backdrop-blur-sm"
 
   return (
     <header
@@ -70,15 +73,15 @@ export function Header() {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-4 xl:gap-5">
             {navigation.map((item) => (
-              <Link
+              <TextLink
                 key={item.name}
                 href={item.href}
                 className={`text-xs xl:text-sm font-medium tracking-tight transition-colors hover:opacity-70 whitespace-nowrap ${
-                  shouldUseLightTheme ? "text-foreground" : "text-white"
+                  shouldUseLightTheme ? "text-foreground" : "text-white hover:text-white"
                 }`}
               >
                 {item.name}
-              </Link>
+              </TextLink>
             ))}
           </div>
 
@@ -92,7 +95,7 @@ export function Header() {
               <span className="hidden 2xl:inline">+7 (988) 344-33-33</span>
               <span className="2xl:hidden">+7 (988) 344-33-33</span>
             </a>
-            <Button asChild className="bg-terracotta hover:bg-terracotta-light text-white rounded-none px-4 xl:px-5 py-2 xl:py-2.5 font-medium text-xs xl:text-sm whitespace-nowrap">
+            <Button asChild variant="brand" className="px-4 xl:px-5 py-2 xl:py-2.5 font-medium text-xs xl:text-sm whitespace-nowrap">
               <Link href="/booking">Забронировать</Link>
             </Button>
           </div>
@@ -109,7 +112,7 @@ export function Header() {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="lg:hidden bg-cream/98 backdrop-blur-md absolute top-20 sm:top-24 left-0 right-0 border-t border-border">
+          <div className="lg:hidden bg-cream/85 backdrop-blur-2xl absolute top-20 sm:top-24 left-0 right-0 border-t border-white/20 shadow-xl">
             <div className="px-4 sm:px-6 py-6 sm:py-8 space-y-5">
               {navigation.map((item) => (
                 <Link
@@ -126,7 +129,7 @@ export function Header() {
                   <Phone className="h-5 w-5" />
                   +7 (988) 344-33-33
                 </a>
-                <Button asChild className="w-full bg-terracotta hover:bg-terracotta-light text-white rounded-none py-3 font-medium">
+                <Button asChild variant="brand" className="w-full py-3 font-medium">
                   <Link href="/booking">Забронировать</Link>
                 </Button>
               </div>
