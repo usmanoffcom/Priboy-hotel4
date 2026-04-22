@@ -4,14 +4,14 @@ set -e
 
 # Деплой Priboy-hotel4 (priboy-spa.ru).
 # Запускать из директории проекта. Секреты — в ./.env.deploy
-# или через переменные окружения — в git их не коммитим.
+# или в ../.env.deploy (если проект лежит в подпапке рабочего каталога).
 #
 # Требуются:
 #   DEPLOY_HOST      — IP/hostname сервера
 #   DEPLOY_SSH_KEY   — путь к приватному ключу (например ~/.ssh/myunion_vds)
 #   DEPLOY_USER      — опционально, по умолчанию root
 
-for env_file in "./.env.deploy"; do
+for env_file in "./.env.deploy" "../.env.deploy"; do
     if [ -f "$env_file" ]; then
         # shellcheck disable=SC1090
         set -a; . "$env_file"; set +a
