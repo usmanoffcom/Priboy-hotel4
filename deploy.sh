@@ -114,6 +114,9 @@ SSH_CMD "chown -R www-data:www-data $REMOTE_DIR && chmod -R 755 $REMOTE_DIR"
 echo "🔄 [7/7] Перезапуск сервиса..."
 SSH_CMD "systemctl daemon-reload && systemctl enable priboy-spa-ru.service && systemctl restart priboy-spa-ru.service"
 
+echo "🌐 Каталоги кэша nginx (иначе nginx -t: client_temp failed)…"
+SSH_CMD "mkdir -p /var/cache/nginx/client_temp /var/cache/nginx/client_body_temp /var/cache/nginx/proxy_temp /var/cache/nginx/fastcgi_temp /var/cache/nginx/uwsgi_temp /var/cache/nginx/scgi_temp && chown -R www-data:www-data /var/cache/nginx" || true
+
 echo "🌐 Nginx для $DOMAIN..."
 SSH_CMD "cat > /etc/nginx/sites-available/$DOMAIN" <<NGINX_EOF
 server {
@@ -139,13 +142,18 @@ server {
     location / {
         proxy_pass http://127.0.0.1:${PORT};
         proxy_http_version 1.1;
-        proxy_set_header Upgrade \$http_upgrade;
-        proxy_set_header Connection "upgrade";
         proxy_set_header Host \$host;
         proxy_set_header X-Real-IP \$remote_addr;
         proxy_set_header X-Forwarded-For \$remote_addr;
         proxy_set_header X-Forwarded-Proto \$scheme;
-        proxy_cache_bypass \$http_upgrade;
+        proxy_set_header Upgrade \$http_upgrade;
+        proxy_set_header Connection "";
+        proxy_buffering on;
+        proxy_buffer_size 256k;
+        proxy_buffers 32 256k;
+        proxy_busy_buffers_size 512k;
+        proxy_read_timeout 300s;
+        proxy_send_timeout 300s;
     }
 
     location /_next/static {
