@@ -27,6 +27,7 @@ yarn-error.log*
 .env
 .env.deploy
 .env.deploy.*
+!.env.deploy.example
 
 # vercel
 .vercel
