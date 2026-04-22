@@ -203,7 +203,7 @@ export default function SummerPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="relative h-80 lg:h-96">
                 <Image
-                  src="/lobby.png"
+                  src="/lobby.jpg"
                   alt="Гранд Отель & SPA Прибой летом"
                   fill
                   className="object-cover"

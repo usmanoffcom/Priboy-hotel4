@@ -5,10 +5,10 @@ import { Button } from "@/components/ui/button"
 import { ClickableImage } from "@/components/image-modal"
 
 const hotelGallery = [
-  "/reception.png",
-  "/lobby.png",
-  "/fasad.png",
-  "/fasad2.png",
+  "/reception.jpg",
+  "/lobby.jpg",
+  "/fasad.jpg",
+  "/fasad2.jpg",
 ]
 
 export function HotelPreview() {
@@ -54,7 +54,7 @@ export function HotelPreview() {
             <div className="space-y-4">
               <div className="preview-grid-card group/img h-48 sm:h-56 md:h-64">
                 <ClickableImage
-                  src="/reception.png"
+                  src="/reception.jpg"
                   alt="Ресепшн Гранд Отель SPA Прибой — стойка регистрации в Лазаревском"
                   gallery={hotelGallery}
                   index={0}
@@ -66,7 +66,7 @@ export function HotelPreview() {
               </div>
               <div className="preview-grid-card group/img h-64 sm:h-72 md:h-80">
                 <ClickableImage
-                  src="/lobby.png"
+                  src="/lobby.jpg"
                   alt="Лобби Гранд Отель SPA Прибой — интерьер отеля в Лазаревском"
                   gallery={hotelGallery}
                   index={1}
@@ -80,7 +80,7 @@ export function HotelPreview() {
             <div className="space-y-4 pt-8">
               <div className="preview-grid-card group/img h-64 sm:h-72 md:h-80">
                 <ClickableImage
-                  src="/fasad.png"
+                  src="/fasad.jpg"
                   alt="Фасад Гранд Отель SPA Прибой — вид на отель в Лазаревском"
                   gallery={hotelGallery}
                   index={2}
@@ -92,7 +92,7 @@ export function HotelPreview() {
               </div>
               <div className="preview-grid-card group/img h-48 sm:h-56 md:h-64">
                 <ClickableImage
-                  src="/fasad2.png"
+                  src="/fasad2.jpg"
                   alt="Гранд Отель SPA Прибой — фасад здания в центре Лазаревского"
                   gallery={hotelGallery}
                   index={3}

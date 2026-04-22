@@ -47,7 +47,7 @@ export const attractions: Attraction[] = [
     workingHours: "Открытый бассейн: 09:00-21:00 (летом), Крытый бассейн: 11:00-20:00",
     price: "Для гостей отеля — бесплатно",
     image: "/pool.JPG",
-    gallery: ["/pool.JPG", "/spa.jpg", "/terassa.png"],
+    gallery: ["/pool.JPG", "/spa.jpg", "/terassa.jpg"],
     coordinates: { lat: 43.9045, lng: 39.3281 }
   },
   {
@@ -193,8 +193,8 @@ export const attractions: Attraction[] = [
     distance: "10 минут на машине от отеля",
     workingHours: "10:00 - 18:00 (вт-вс)",
     price: "200 ₽ взрослый, 100 ₽ детский",
-    image: "/reception.png",
-    gallery: ["/reception.png"],
+    image: "/reception.jpg",
+    gallery: ["/reception.jpg"],
     coordinates: { lat: 43.9078, lng: 39.3245 }
   },
   {

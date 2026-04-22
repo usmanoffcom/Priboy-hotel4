@@ -10,9 +10,9 @@ const SpaPreview = dynamic(() => import("@/components/spa-preview").then((m) => 
 const AquaComplexPreview = dynamic(() => import("@/components/aqua-complex-preview").then((m) => ({ default: m.AquaComplexPreview })), { ssr: true })
 const AnimationPreview = dynamic(() => import("@/components/animation-preview").then((m) => ({ default: m.AnimationPreview })), { ssr: true })
 const HotelPreview = dynamic(() => import("@/components/hotel-preview").then((m) => ({ default: m.HotelPreview })), { ssr: true })
+const OtherHotels = dynamic(() => import("@/components/other-hotels").then((m) => ({ default: m.OtherHotels })), { ssr: true })
 const TestimonialsSection = dynamic(() => import("@/components/testimonials-section").then((m) => ({ default: m.TestimonialsSection })), { ssr: true })
 const CtaSection = dynamic(() => import("@/components/cta-section").then((m) => ({ default: m.CtaSection })), { ssr: true })
-const OtherHotels = dynamic(() => import("@/components/other-hotels").then((m) => ({ default: m.OtherHotels })), { ssr: true })
 
 export const metadata: Metadata = {
   title: "Лазаревский отель Гранд Прибой — Отели в Лазаревское, Сочи",
@@ -50,9 +50,9 @@ export default function HomePage() {
         <AquaComplexPreview />
         <AnimationPreview />
         <HotelPreview />
+        <OtherHotels />
         <TestimonialsSection />
         <CtaSection />
-        <OtherHotels />
       </main>
       <Footer />
     </>

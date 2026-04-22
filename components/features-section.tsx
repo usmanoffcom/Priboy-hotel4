@@ -7,7 +7,7 @@ import { SiteCard } from "@/components/ui/site-card"
 
 const features = [
   {
-    image: "/slides/3.png",
+    image: "/slides/3.jpg",
     title: "2 бассейна",
     description: "Открытый и крытый бассейны для всей семьи. Идеальное место для плавания и отдыха с видом на город.",
     href: "/uslugi/basseyn",
@@ -31,13 +31,13 @@ const features = [
     href: "/uslugi/shezlongi-na-plyazhe",
   },
   {
-    image: "/parcing.png",
+    image: "/parcing.jpg",
     title: "Подземная парковка",
     description: "Бесплатная охраняемая подземная парковка для гостей отеля. Безопасное хранение вашего автомобиля.",
     href: "/uslugi/podzemnaya-parkovka",
   },
   {
-    image: "/terassa.png",
+    image: "/terassa.jpg",
     title: "Терраса",
     description: "Крытая летняя терраса, где проходят завтраки, обеды и ужины по системе «шведский стол».",
     href: "/restaurant",

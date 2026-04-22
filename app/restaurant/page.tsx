@@ -11,6 +11,7 @@ import Image from "next/image"
 import { PageHero } from "@/components/ui/page-hero"
 import { Section } from "@/components/ui/section"
 import { SectionHeader } from "@/components/ui/section-header"
+import { LazyVideo } from "@/components/lazy-video"
 import "./menu-logo.css"
 
 const restaurantImages = [
@@ -69,19 +70,12 @@ export default function RestaurantPage() {
             centered
             className="mb-12 [&_h2]:text-white [&_.site-eyebrow]:text-gold"
           />
-            <div className="relative w-full aspect-video overflow-hidden rounded-lg">
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover"
-                poster="/avenue.jpg"
-              >
-                <source src="/restaurant-avenue.mp4" type="video/mp4" />
-                Ваш браузер не поддерживает видео.
-              </video>
-            </div>
+            <LazyVideo
+              src="/restaurant-avenue.mp4"
+              poster="/avenue.jpg"
+              posterAlt="Ресторан Avenue"
+              className="relative w-full aspect-video overflow-hidden rounded-lg"
+            />
         </Section>
 
         {/* About */}

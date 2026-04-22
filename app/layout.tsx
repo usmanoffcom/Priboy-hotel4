@@ -3,6 +3,8 @@ import type { Metadata } from "next"
 import { Onest } from "next/font/google"
 import Script from "next/script"
 import { ImageModalProvider } from "@/components/image-modal"
+import { getHotelJsonLd } from "@/lib/hotel-schema"
+import { serializeJsonLd } from "@/lib/json-ld"
 import "./globals.css"
 
 const onest = Onest({
@@ -60,6 +62,13 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://ibe.tlintegration.com" />
       </head>
       <body className={`${onest.variable} font-sans antialiased`}>
+        {/* JSON-LD: нативный <script>; данные в lib/hotel-schema.ts */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: serializeJsonLd(getHotelJsonLd()),
+          }}
+        />
         <Script
           id="travelline-init"
           strategy="lazyOnload"
@@ -90,9 +99,10 @@ export default function RootLayout({
             `,
           }}
         />
+        {/* Метрика и Top.Mail.Ru: afterInteractive — счётчик срабатывает сразу после гидрации; lazyOnload терял часть визитов */}
         <Script
           id="yandex-metrika"
-          strategy="lazyOnload"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               (function(m,e,t,r,i,k,a){
@@ -105,18 +115,9 @@ export default function RootLayout({
             `,
           }}
         />
-        <noscript>
-          <div>
-            <img
-              src="https://mc.yandex.ru/watch/99041885"
-              className="absolute left-[-9999px]"
-              alt="Яндекс Метрика"
-            />
-          </div>
-        </noscript>
         <Script
           id="top-mail-ru"
-          strategy="lazyOnload"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               var _tmr = window._tmr || (window._tmr = []);
@@ -134,95 +135,17 @@ export default function RootLayout({
         <noscript>
           <div>
             <img
+              src="https://mc.yandex.ru/watch/99041885"
+              className="absolute left-[-9999px]"
+              alt="Яндекс Метрика"
+            />
+            <img
               src="https://top-fwz1.mail.ru/counter?id=3749541;js=na"
               className="absolute left-[-9999px]"
               alt="Top.Mail.Ru"
             />
           </div>
         </noscript>
-        <Script
-          id="schema-org-hotel"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Hotel",
-              "name": "Гранд Отель и СПА «Прибой»",
-              "alternateName": "Grand Hotel & SPA Priboy",
-              "description": "Лазаревский отель с SPA-комплексом, 5 видами бань, 2 бассейнами и рестораном. Лучший выбор среди отелей в Лазаревское для семейного отдыха.",
-              "url": "https://priboy-spa.ru",
-              "telephone": "+7-988-344-33-33",
-              "email": "booking@priboy-spa.ru",
-              "image": "https://priboy-spa.ru/Fasad/IMG_3719.jpg",
-              "priceRange": "₽₽₽",
-              "starRating": {
-                "@type": "Rating",
-                "ratingValue": "3"
-              },
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "ул. Калараша, 131",
-                "addressLocality": "Лазаревское",
-                "addressRegion": "Краснодарский край",
-                "postalCode": "354200",
-                "addressCountry": "RU"
-              },
-              "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": "43.9045",
-                "longitude": "39.3285"
-              },
-              "amenityFeature": [
-                { "@type": "LocationFeatureSpecification", "name": "SPA-комплекс", "value": true },
-                { "@type": "LocationFeatureSpecification", "name": "Бассейн", "value": true },
-                { "@type": "LocationFeatureSpecification", "name": "Ресторан", "value": true },
-                { "@type": "LocationFeatureSpecification", "name": "Парковка", "value": true },
-                { "@type": "LocationFeatureSpecification", "name": "Wi-Fi", "value": true },
-                { "@type": "LocationFeatureSpecification", "name": "Кондиционер", "value": true }
-              ],
-              "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.8",
-                "reviewCount": "850",
-                "bestRating": "5",
-                "worstRating": "1"
-              },
-              "sameAs": [
-                "https://vk.com/priboy_spa",
-                "https://t.me/priboy_spa"
-              ]
-            })
-          }}
-        />
-        <Script
-          id="schema-org-local-business"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              "name": "Гранд Отель и СПА «Прибой»",
-              "image": "https://priboy-spa.ru/Fasad/IMG_3719.jpg",
-              "@id": "https://priboy-spa.ru",
-              "url": "https://priboy-spa.ru",
-              "telephone": "+7-988-344-33-33",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "ул. Калараша, 131",
-                "addressLocality": "Лазаревское, Сочи",
-                "addressRegion": "Краснодарский край",
-                "postalCode": "354200",
-                "addressCountry": "RU"
-              },
-              "openingHoursSpecification": {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-                "opens": "00:00",
-                "closes": "23:59"
-              }
-            })
-          }}
-        />
         <ImageModalProvider>
           {children}
         </ImageModalProvider>

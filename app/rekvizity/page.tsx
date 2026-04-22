@@ -58,7 +58,7 @@ export default function RequisitesPage() {
                     <div className="space-y-3 text-base text-muted-foreground">
                       <p><strong className="text-foreground">Индивидуальный предприниматель:</strong> Тавадов Эдик Арташович</p>
                       <p><strong className="text-foreground">Юридический адрес:</strong> 354200, г. Сочи, п. Лазаревское, ул. Новая, 26</p>
-                      <p><strong className="text-foreground">Почтовый адрес:</strong> 354200, г. Сочи, п. Лазаревское, ул. Павлова, 2</p>
+                      <p><strong className="text-foreground">Почтовый адрес:</strong> 354200, г. Сочи, п. Лазаревское, ул. Калараша, 131</p>
                       <p><strong className="text-foreground">ИНН:</strong> 231802674402</p>
                       <p><strong className="text-foreground">ОГРН:</strong> 304231836500380</p>
                       <p className="mt-4 text-sm">

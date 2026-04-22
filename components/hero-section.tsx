@@ -9,8 +9,8 @@ import Image from "next/image"
 const slides = [
   "/slides/1.jpg",
   "/slides/2.jpg",
-  "/slides/3.png",
-  "/slides/4.png",
+  "/slides/3.jpg",
+  "/slides/4.jpg",
   "/slides/5.JPG",
 ]
 
@@ -19,7 +19,19 @@ export function HeroSection() {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setMounted(true)
+    // Откладываем рендер остальных слайдов до idle, чтобы не мешать LCP
+    const w = window as Window & {
+      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number
+    }
+    const schedule = w.requestIdleCallback
+      ? (cb: () => void) => w.requestIdleCallback!(cb, { timeout: 2500 })
+      : (cb: () => void) => window.setTimeout(cb, 1500)
+    const id = schedule(() => setMounted(true))
+    return () => {
+      const cancel = (window as Window & { cancelIdleCallback?: (id: number) => void }).cancelIdleCallback
+      if (cancel) cancel(id as number)
+      else clearTimeout(id as number)
+    }
   }, [])
 
   useEffect(() => {
@@ -30,7 +42,7 @@ export function HeroSection() {
     return () => clearInterval(interval)
   }, [mounted])
 
-  // До гидратации — только первый слайд (LCP), остальные не запрашиваем
+  // До idle — только первый слайд (LCP), остальные не запрашиваем и не декодируем
   const slidesToRender = mounted ? slides : [slides[0]]
 
   return (

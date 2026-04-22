@@ -139,7 +139,7 @@ export default function WinterPage() {
               </div>
               <div className="relative h-80 lg:h-[500px]">
                 <Image
-                  src="/zimnie-aktivnosti.png"
+                  src="/zimnie-aktivnosti.jpg"
                   alt="Зимний отдых в Лазаревском"
                   fill
                   className="object-cover"
@@ -156,7 +156,7 @@ export default function WinterPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="relative h-80 lg:h-96 order-2 lg:order-1">
                 <Image
-                  src="/krasnaya-polyana.png"
+                  src="/krasnaya-polyana.jpg"
                   alt="Красная Поляна"
                   fill
                   className="object-cover object-left-top"

@@ -63,8 +63,8 @@ export const services: Service[] = [
       "Свадебные церемонии",
       "Корпоративные мероприятия"
     ],
-    image: "/terassa.png",
-    gallery: ["/terassa.png", "/avenue.jpg"]
+    image: "/terassa.jpg",
+    gallery: ["/terassa.jpg", "/avenue.jpg"]
   },
   {
     slug: "basseyn",
@@ -79,12 +79,12 @@ export const services: Service[] = [
       "Комфортная зона отдыха"
     ],
     workingHours: "08:00 - 22:00",
-    image: "/slides/3.png",
+    image: "/slides/3.jpg",
     gallery: [
-      "/slides/3.png",
+      "/slides/3.jpg",
       "/pool01.jpg",
       "/pool2.jpg",
-      "/slides/4.png",
+      "/slides/4.jpg",
       "/slides/5.JPG"
     ]
   },

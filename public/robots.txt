@@ -1,13 +1,30 @@
+# Боты PR-CY: реальный UA начинается с Mozilla/5.0 (compatible; PR-CY.RU — префиксные правила PR-CY / PR-CY-BOT на него не действуют)
+# https://pr-cy.ru/help/article/enable-crawl-my-website/
+User-agent: Mozilla/5.0 (compatible; PR-CY.RU
+Allow: /
+
+User-agent: pr-cy.ru Screenshot Bot
+Allow: /
+
+User-agent: PR-CY-BOT
+Allow: /
+
+User-agent: PR-CY
+Allow: /
+
+User-agent: PR-CY.RU
+Allow: /
+
 User-agent: *
 Allow: /
 
-# Запрещаем индексацию служебных страниц
+# Служебное
 Disallow: /api/
 Disallow: /_next/
+# Чанки Next.js — нужны инструментам с JS-рендером (PR-CY, Lighthouse); приоритетнее Disallow /_next/
+Allow: /_next/static/
 Disallow: /booking/thank-you
 
-# Разрешаем индексацию основных страниц
-Allow: /
 Allow: /rooms
 Allow: /rooms/*
 Allow: /spa
@@ -23,9 +40,4 @@ Allow: /o-komplekse
 Allow: /restaurant
 Allow: /contacts
 
-# Sitemap
 Sitemap: https://priboy-spa.ru/sitemap.xml
-
-# LLMs / AI: структурированное описание сайта для ИИ-ботов
-# https://priboy-spa.ru/llms.txt
-

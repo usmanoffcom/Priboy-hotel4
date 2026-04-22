@@ -1,4 +1,4 @@
-import Script from "next/script"
+import { serializeJsonLd } from "@/lib/json-ld"
 
 interface FAQItem {
   question: string
@@ -24,11 +24,10 @@ export function FAQSchema({ faqs }: FAQSchemaProps) {
   }
 
   return (
-    <Script
-      id="faq-schema"
+    <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(structuredData),
+        __html: serializeJsonLd(structuredData),
       }}
     />
   )

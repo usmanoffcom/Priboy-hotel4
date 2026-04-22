@@ -4,18 +4,20 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
 import type { Metadata } from "next"
-import { MapPin, Star, Phone, Waves, Dumbbell, Utensils, Car, Users, Sparkles, Check, ArrowRight, Building2 } from "lucide-react"
+import { MapPin, Star, Phone, Check, ArrowRight, Building2 } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Отели в Лазаревское — Лучшие гостиницы для отдыха на море 2026",
-  description: "Лазаревский отель для семейного отдыха. Выбирайте лучшие отели в Лазаревское: Гранд Отель Прибой с SPA и Гостиница Прибой. Бронируйте напрямую!",
+  description:
+    "Лазаревский отель для семейного отдыха. Гранд Отель Прибой с SPA и гостиница «Прибой» в центре — бронирование SPA на priboy-spa.ru, гостиница на официальном сайте priboy1.ru.",
   keywords: "отели в лазаревское, лазаревский отель, гостиницы лазаревское, отель лазаревское, отдых в лазаревском, отели сочи лазаревское",
   alternates: {
     canonical: "https://priboy-spa.ru/oteli-lazarevskoe",
   },
   openGraph: {
     title: "Отели в Лазаревское — Лучшие гостиницы 2026",
-    description: "Лазаревский отель для семейного отдыха. Гранд Отель Прибой и Гостиница Прибой: SPA, бассейны, рестораны. Бронируйте напрямую!",
+    description:
+      "Лазаревский отель для семейного отдыха. Гранд Отель и СПА «Прибой» и гостиница «Прибой»: SPA, бассейны, рестораны. Бронируйте напрямую.",
     url: "https://priboy-spa.ru/oteli-lazarevskoe",
     type: "website",
     locale: "ru_RU",
@@ -26,7 +28,8 @@ export const metadata: Metadata = {
 const hotels = [
   {
     name: "Гранд Отель и СПА «Прибой»",
-    description: "Премиальный лазаревский отель с собственным SPA-комплексом, 5 видами бань, 2 бассейнами и рестораном. Идеальный выбор для комфортного отдыха на Черноморском побережье.",
+    description:
+      "Премиальный лазаревский отель с собственным SPA-комплексом, 5 видами бань, 2 бассейнами и рестораном. Идеальный выбор для комфортного отдыха на Черноморском побережье.",
     image: "/Fasad/IMG_3719.jpg",
     url: "/",
     features: ["2 бассейна", "SPA с 5 банями", "Ресторан", "Подземная парковка"],
@@ -37,7 +40,8 @@ const hotels = [
   },
   {
     name: "Гостиница Прибой",
-    description: "Уютный отель в центре Лазаревского с комфортными номерами и домашней атмосферой. Прямо у моря. Идеально для семейного отдыха.",
+    description:
+      "Уютный отель в центре Лазаревского с комфортными номерами и домашней атмосферой. Прямо у моря. Идеально для семейного отдыха.",
     image: "https://framerusercontent.com/images/knZyYzLGIo9To06MDK80T4PMGA.jpg",
     url: "https://priboy1.ru",
     features: ["Центр города", "до моря 0 минут", "Завтраки", "Парковка"],
@@ -79,7 +83,8 @@ export default function OteliLazarevskoe() {
               </h1>
               
               <p className="text-lg sm:text-xl text-white/90 mb-10 leading-relaxed max-w-xl">
-                От премиального SPA-отеля до уютных гостиниц. Бронируйте напрямую — лучшие цены гарантированы.
+                От премиального SPA-отеля до уютных гостиниц. Бронирование Гранд Отеля — на этом сайте; гостиница «Прибой» — на{" "}
+                <span className="text-white font-medium">priboy1.ru</span>. Лучшие цены при прямом бронировании.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
@@ -100,15 +105,15 @@ export default function OteliLazarevskoe() {
               {/* Stats */}
               <div className="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-white/20">
                 <div>
-                  <div className="text-3xl sm:text-4xl font-bold text-white">3</div>
-                  <div className="text-white/70 text-sm">Отеля</div>
+                  <div className="text-3xl sm:text-4xl font-bold text-white">2</div>
+                  <div className="text-white/70 text-sm">Отеля в сети</div>
                 </div>
                 <div>
                   <div className="text-3xl sm:text-4xl font-bold text-white">3500+</div>
                   <div className="text-white/70 text-sm">Гостей в год</div>
                 </div>
                 <div>
-                  <div className="text-3xl sm:text-4xl font-bold text-white">5.0</div>
+                  <div className="text-3xl sm:text-4xl font-bold text-white">4.8</div>
                   <div className="text-white/70 text-sm">Средний рейтинг</div>
                 </div>
               </div>
@@ -180,7 +185,7 @@ export default function OteliLazarevskoe() {
           </div>
         </section>
 
-        {/* Other Hotels */}
+        {/* Другой отель сети — внешняя ссылка только на официальный домен priboy1.ru */}
         <section className="py-20 sm:py-28 bg-cream">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
@@ -193,71 +198,71 @@ export default function OteliLazarevskoe() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {hotels.filter(h => !h.isMain).map((hotel) => (
-                <div
-                  key={hotel.name}
-                  className="bg-white group hover:shadow-2xl transition-all duration-500 overflow-hidden"
-                >
-                  <div className="relative h-64 overflow-hidden">
-                    <Image
-                      src={hotel.image}
-                      alt={`${hotel.name} — лазаревский отель`}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-700"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      quality={85}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <div className="absolute bottom-4 left-4 flex items-center gap-2">
-                      <div className="flex items-center gap-1 bg-white/95 px-3 py-1.5">
-                        <Star className="w-4 h-4 fill-yellow-500 text-yellow-500" />
-                        <span className="font-bold text-sm">{hotel.rating}</span>
+              {hotels
+                .filter((h) => !h.isMain)
+                .map((hotel) => (
+                  <div
+                    key={hotel.name}
+                    className="bg-white group hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                  >
+                    <div className="relative h-64 overflow-hidden">
+                      <Image
+                        src={hotel.image}
+                        alt={`${hotel.name} — лазаревский отель`}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-700"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        quality={85}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                      <div className="absolute bottom-4 left-4 flex items-center gap-2">
+                        <div className="flex items-center gap-1 bg-white/95 px-3 py-1.5">
+                          <Star className="w-4 h-4 fill-yellow-500 text-yellow-500" />
+                          <span className="font-bold text-sm">{hotel.rating}</span>
+                        </div>
+                        <span className="text-white/90 text-sm">{hotel.reviews} отзывов</span>
                       </div>
-                      <span className="text-white/90 text-sm">{hotel.reviews} отзывов</span>
+                    </div>
+
+                    <div className="p-6 sm:p-8">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
+                        <MapPin className="w-4 h-4 text-terracotta" />
+                        Лазаревское
+                      </div>
+
+                      <h3 className="text-2xl font-bold mb-3 text-foreground group-hover:text-terracotta transition-colors">
+                        {hotel.name}
+                      </h3>
+
+                      <p className="text-muted-foreground leading-relaxed mb-5 line-clamp-2">{hotel.description}</p>
+
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {hotel.features.map((feature) => (
+                          <span key={feature} className="bg-cream text-foreground text-xs px-3 py-1.5 font-medium">
+                            {feature}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="flex items-center justify-between pt-5 border-t border-border">
+                        <div>
+                          <span className="text-sm text-muted-foreground">от </span>
+                          <span className="text-2xl font-bold text-foreground">{hotel.priceFrom}</span>
+                          <span className="text-sm text-muted-foreground"> / ночь</span>
+                        </div>
+                        <Button
+                          asChild
+                          className="bg-foreground hover:bg-foreground/90 text-white px-6 py-5 group/btn"
+                        >
+                          <Link href={hotel.url} target="_blank" rel="noopener noreferrer">
+                            Подробнее
+                            <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                          </Link>
+                        </Button>
+                      </div>
                     </div>
                   </div>
-                  
-                  <div className="p-6 sm:p-8">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
-                      <MapPin className="w-4 h-4 text-terracotta" />
-                      Лазаревское
-                    </div>
-                    
-                    <h3 className="text-2xl font-bold mb-3 text-foreground group-hover:text-terracotta transition-colors">
-                      {hotel.name}
-                    </h3>
-                    
-                    <p className="text-muted-foreground leading-relaxed mb-5 line-clamp-2">
-                      {hotel.description}
-                    </p>
-                    
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {hotel.features.map((feature) => (
-                        <span key={feature} className="bg-cream text-foreground text-xs px-3 py-1.5 font-medium">
-                          {feature}
-                        </span>
-                      ))}
-                    </div>
-                    
-                    <div className="flex items-center justify-between pt-5 border-t border-border">
-                      <div>
-                        <span className="text-sm text-muted-foreground">от </span>
-                        <span className="text-2xl font-bold text-foreground">{hotel.priceFrom}</span>
-                        <span className="text-sm text-muted-foreground"> / ночь</span>
-                      </div>
-                      <Button
-                        asChild
-                        className="bg-foreground hover:bg-foreground/90 text-white px-6 py-5 group/btn"
-                      >
-                        <Link href={hotel.url} target="_blank">
-                          Подробнее
-                          <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-                        </Link>
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
         </section>
@@ -281,7 +286,7 @@ export default function OteliLazarevskoe() {
                 <div className="space-y-6">
                   {[
                     { title: "Прямое бронирование", desc: "Лучшие цены без посредников и скрытых комиссий" },
-                    { title: "Гарантия качества", desc: "Все отели регулярно проверяются на соответствие стандартам" },
+                    { title: "Гарантия качества", desc: "Объекты сети регулярно проверяются на соответствие заявленным стандартам" },
                     { title: "Удобное расположение", desc: "Пешая доступность до моря и достопримечательностей" },
                     { title: "Поддержка 24/7", desc: "Помощь на каждом этапе — от бронирования до выезда" },
                   ].map((item, index) => (
@@ -303,7 +308,7 @@ export default function OteliLazarevskoe() {
                   <div className="space-y-4">
                     <div className="preview-grid-card cursor-default h-48">
                       <Image
-                        src="/lobby.png"
+                        src="/lobby.jpg"
                         alt="Интерьер отеля"
                         fill
                         className="object-cover"
@@ -322,7 +327,7 @@ export default function OteliLazarevskoe() {
                   <div className="space-y-4 pt-8">
                     <div className="preview-grid-card cursor-default h-64">
                       <Image
-                        src="/reception.png"
+                        src="/reception.jpg"
                         alt="Ресепшн"
                         fill
                         className="object-cover"
@@ -330,7 +335,7 @@ export default function OteliLazarevskoe() {
                     </div>
                     <div className="preview-grid-card cursor-default h-48">
                       <Image
-                        src="/fasad2.png"
+                        src="/fasad2.jpg"
                         alt="Фасад отеля"
                         fill
                         className="object-cover"
@@ -359,12 +364,15 @@ export default function OteliLazarevskoe() {
                   размещение на любой вкус: от бюджетных гостиниц до премиальных SPA-отелей.
                 </p>
                 <p>
-                  Выбирая <strong className="text-foreground">лазаревский отель</strong> из нашей коллекции, вы получаете гарантию качественного 
+                  Выбирая <strong className="text-foreground">лазаревский отель</strong> из нашей коллекции, вы получаете гарантию качественного
                   сервиса, комфортные условия проживания и удобное расположение рядом с морем.
                 </p>
                 <p>
-                  Бронируйте напрямую и получайте лучшие цены. Мы предлагаем специальные условия для семей с детьми, 
-                  раннего бронирования и длительного проживания.
+                  <strong className="text-foreground">Гранд Отель и СПА «Прибой»</strong> — бронирование на priboy-spa.ru.{" "}
+                  <strong className="text-foreground">Гостиница «Прибой»</strong> (ул. Павлова) — официальный сайт priboy1.ru.
+                </p>
+                <p>
+                  Бронируйте напрямую и получайте лучшие цены. Специальные условия для семей с детьми, раннего бронирования и длительного проживания.
                 </p>
               </div>
             </div>
@@ -375,7 +383,7 @@ export default function OteliLazarevskoe() {
         <section className="relative py-24 sm:py-32">
           <div className="absolute inset-0">
             <Image
-              src="/slides/3.png"
+              src="/slides/3.jpg"
               alt="Забронировать отель в Лазаревском"
               fill
               className="object-cover"
